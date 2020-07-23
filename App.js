@@ -1,21 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { AppLoading } from "expo";
+import * as Font from "expo-font";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import ReduxView from "./src/store";
+import Route from "./src/route";
+import { StatusBar } from "expo-status-bar";
+
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      assetsLoaded: false,
+    };
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      RobotoBold: require("./assets/fonts/Roboto-Bold.ttf"),
+      RobotoItalic: require("./assets/fonts/Roboto-Italic.ttf"),
+      Roboto: require("./assets/fonts/Roboto-Regular.ttf"),
+    });
+    this.setState({ assetsLoaded: true });
+  }
+
+  render() {
+    const { assetsLoaded } = this.state;
+    if (!assetsLoaded) {
+      return <AppLoading />;
+    }
+
+    return (
+      <ReduxView>
+        <StatusBar style="light" />
+        <Route />
+      </ReduxView>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

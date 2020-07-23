@@ -1,0 +1,12 @@
+export const logo = require('./direction/logo.png');
+export const cabinet = require('./direction/cabinet.png');
+export const pay = require('./direction/pay.png');
+export const replenish = require('./direction/replenish.png');
+export const sell = require('./direction/sell.png');
+export const withdraw = require('./direction/withdraw.png');
+export const down = require('./direction/down.png');
+export const icon = require('./direction/icon.png');
+export const selectStar = require('./direction/select_star.png');
+export const unselectStar = require('./direction/unselect_star.png');
+export const bitcoin = require('./direction/bitcoin.png');
+export const left = require('./direction/left.png');
