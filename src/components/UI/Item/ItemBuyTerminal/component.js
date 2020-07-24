@@ -1,22 +1,22 @@
-import React from 'react';
-import {Text, View, Image, TouchableOpacity} from 'react-native';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import ScalableImage from 'react-native-scalable-image';
+import React from "react";
+import { Text, View, Image, TouchableOpacity } from "react-native";
+import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import ScalableImage from "react-native-scalable-image";
 
 // Components
-import Rating from '../../Rating';
-import ButtonColor from '../../Button/ButtonColor';
+import Rating from "../../Rating";
+import ButtonColor from "../../Button/ButtonColor";
 
 // Helpers
-import * as Images from '../../../../helpers/images';
-import {navigate} from '../../../../helpers/navigation';
+import * as Images from "../../../../helpers/images";
+import { navigate } from "../../../../helpers/navigation";
 
 // Style
-import {base} from './styles';
+import { base } from "./styles";
 
 export default class ItemBuyTerminal extends React.Component {
   onPress = () => {
-    navigate('OpenDealBuy');
+    navigate("OpenDealBuy");
   };
 
   render() {
@@ -34,17 +34,17 @@ export default class ItemBuyTerminal extends React.Component {
       currency,
     } = this.props;
     return (
-      <TouchableOpacity style={base.wrap1} onPress={this.onPress}>
+      <View style={base.wrap1}>
         <View style={base.wrap2}>
           <View style={isOnline ? base.wrap3 : base.wrap4} />
           <Image
             style={base.image1}
-            source={icon ? {uri: icon} : Images.icon}
+            source={icon ? { uri: icon } : Images.icon}
           />
           <View style={base.wrap5}>
             <Text style={base.text1}>{name}</Text>
             <Text style={isVerify ? base.text2 : base.text3}>
-              {isVerify ? 'Верифицирован' : 'Не верифицирован'}
+              {isVerify ? "Верифицирован" : "Не верифицирован"}
             </Text>
           </View>
           <View style={base.flex} />
@@ -64,9 +64,8 @@ export default class ItemBuyTerminal extends React.Component {
               <Text style={base.text7}>{size} BTC</Text>
             </View>
             <Text
-              style={
-                base.text5
-              }>{`${limit.min} - ${limit.max} ${currency}`}</Text>
+              style={base.text5}
+            >{`${limit.min} - ${limit.max} ${currency}`}</Text>
             <Text style={base.text5}>{`${course} ${currency}`}</Text>
           </View>
           <ScalableImage
@@ -79,8 +78,9 @@ export default class ItemBuyTerminal extends React.Component {
           title="Купить"
           style={base.button1}
           styleText={base.buttonText1}
+          onPress={this.onPress}
         />
-      </TouchableOpacity>
+      </View>
     );
   }
 }

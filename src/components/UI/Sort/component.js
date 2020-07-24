@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 
 // Components
-import Picker from "../Picker";
+import PickerSmall from "../Picker/PickerSmall";
 
 // Style
 import { base } from "./styles";
@@ -20,11 +20,11 @@ export default class Sort extends React.Component {
     const { title } = this.props;
     return (
       <View style={base.wrap1}>
-        <Picker title="Страна" data={COUNTRY} />
+        <PickerSmall title="Страна" data={COUNTRY} />
         <View style={base.flex} />
-        <Picker title="Рейтинг продавца" data={RATING} />
+        <PickerSmall title="Рейтинг продавца" data={RATING} />
         <View style={base.flex} />
-        <Picker title="Валюта" data={CURRENCY} />
+        <PickerSmall title="Валюта" data={CURRENCY} />
       </View>
     );
   }

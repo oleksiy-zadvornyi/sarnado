@@ -4,7 +4,6 @@ import * as Font from "expo-font";
 
 import ReduxView from "./src/store";
 import Route from "./src/route";
-import { StatusBar } from "expo-status-bar";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -32,7 +31,6 @@ export default class App extends React.Component {
 
     return (
       <ReduxView>
-        <StatusBar style="light" />
         <Route />
       </ReduxView>
     );

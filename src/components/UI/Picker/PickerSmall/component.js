@@ -4,12 +4,12 @@ import Image from "react-native-scalable-image";
 import Modal from "react-native-modal";
 
 // Helpers
-import * as Images from "../../../helpers/images";
+import * as Images from "../../../../helpers/images";
 
 // Style
 import { base } from "./styles";
 
-export default class Picker extends React.Component {
+export default class PickerSmall extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

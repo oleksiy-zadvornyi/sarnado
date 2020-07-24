@@ -1,17 +1,19 @@
-import React from 'react';
-import {View, ScrollView, SafeAreaView} from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import React from "react";
+import { View, ScrollView, SafeAreaView } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { StatusBar } from "expo-status-bar";
 
 // Style
-import {base} from './styles';
+import { base } from "./styles";
 
 export default class Wrap extends React.Component {
   render() {
-    const {children, noScroll, style} = this.props;
+    const { children, noScroll, style } = this.props;
 
     if (noScroll) {
       return (
         <SafeAreaView style={base.safe}>
+          {/* <StatusBar style="auto" /> */}
           <View style={[base.flex, base.backgroundColor, style]}>
             <View style={base.wrap}>{children}</View>
           </View>
@@ -21,6 +23,7 @@ export default class Wrap extends React.Component {
 
     return (
       <SafeAreaView style={base.safe}>
+        {/* <StatusBar style="auto" /> */}
         <View style={[base.flex, base.backgroundColor, style]}>
           <KeyboardAwareScrollView
             contentContainerStyle={base.flex}
@@ -29,12 +32,14 @@ export default class Wrap extends React.Component {
             alwaysBounceVertical={false}
             bounces={false}
             keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}>
+            showsVerticalScrollIndicator={false}
+          >
             <ScrollView
               contentContainerStyle={base.wrap2}
               showsVerticalScrollIndicator={false}
               keyboardShouldPersistTaps="handled"
-              bounces={false}>
+              bounces={false}
+            >
               <View style={base.wrap2}>{children}</View>
             </ScrollView>
           </KeyboardAwareScrollView>

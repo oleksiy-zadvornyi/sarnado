@@ -1,24 +1,24 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet, Platform } from "react-native";
 
 export const base = StyleSheet.create({
   flex: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
   wrap: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   wrap2: {
     flexGrow: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
   backgroundColor: {
-    backgroundColor: '#002331',
+    backgroundColor: "#002331",
   },
   safe: {
     flex: 1,
-    backgroundColor: '#002331',
+    backgroundColor: "#002331",
   },
 });
 
-export default {base};
+export default { base };

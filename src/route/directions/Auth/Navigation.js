@@ -1,24 +1,26 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import {navigationRef} from '../../../helpers/navigation';
-import {TabBar} from './TabBar';
+import { navigationRef } from "../../../helpers/navigation";
+import { TabBar } from "./TabBar";
 
 // Screens
-import Login from '../../../components/Screens/Auth/Login';
-import Registration from '../../../components/Screens/Auth/Registration';
-import ChooseTheRide from '../../../components/Screens/Auth/ChooseTheRide';
-import BuyTerminal from '../../../components/Screens/Auth/BuyTerminal';
-import SellTerminal from '../../../components/Screens/Auth/SellTerminal';
-import OpenDealBuy from '../../../components/Screens/Auth/OpenDealBuy';
-import OpenDealSell from '../../../components/Screens/Auth/OpenDealSell';
+import Login from "../../../components/Screens/Auth/Login";
+import Registration from "../../../components/Screens/Auth/Registration";
+import ChooseTheRide from "../../../components/Screens/Auth/ChooseTheRide";
+import BuyTerminal from "../../../components/Screens/Auth/BuyTerminal";
+import SellTerminal from "../../../components/Screens/Auth/SellTerminal";
+import OpenDealBuy from "../../../components/Screens/Auth/OpenDealBuy";
+import OpenDealSell from "../../../components/Screens/Auth/OpenDealSell";
+import Step1 from "../../../components/Screens/Auth/Step/Step1";
+import Step2 from "../../../components/Screens/Auth/Step/Step2";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const options = {title: null};
+const options = { title: null };
 
 function Auth() {
   return (
@@ -54,6 +56,9 @@ function Auth() {
         component={OpenDealSell}
         options={options}
       />
+
+      <Stack.Screen name="Step1" component={Step1} options={options} />
+      <Stack.Screen name="Step2" component={Step2} options={options} />
     </Stack.Navigator>
   );
 }

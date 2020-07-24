@@ -13,11 +13,14 @@ export const base = StyleSheet.create({
     borderBottomColor: "black",
     borderBottomWidth: 1,
   },
+  tintColor1: {
+    tintColor: "black",
+  },
   text1: {
     fontFamily: "Roboto",
-    fontSize: wp(4.5),
-    color: "white",
-    lineHeight: wp(5),
+    fontSize: wp(6),
+    fontWeight: "bold",
+    color: "black",
     marginRight: wp(1),
   },
   text2: {
@@ -30,11 +33,16 @@ export const base = StyleSheet.create({
     paddingHorizontal: wp(2),
   },
   wrap1: {
+    width: wp(100) - 24,
+    backgroundColor: "#C4C4C4",
     flexDirection: "row",
     alignItems: "center",
+    paddingVertical: wp(4),
+    paddingHorizontal: wp(5.5),
+    borderRadius: wp(1),
   },
   wrap2: {
-    minWidth: wp(50),
+    minWidth: wp(60),
     backgroundColor: "white",
     borderRadius: wp(1),
     borderColor: "black",

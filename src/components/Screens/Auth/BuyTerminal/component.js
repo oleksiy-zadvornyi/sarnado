@@ -13,6 +13,7 @@ import * as Images from "../../../../helpers/images";
 
 // Style
 import { base } from "./styles";
+import { navigate } from "../../../../helpers/navigation";
 
 const DATA = [
   {
@@ -69,10 +70,12 @@ export default class BuyTerminal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      language: "",
-    };
+    this.state = {};
   }
+
+  onPress = () => {
+    navigate("Step1");
+  };
 
   renderItem = ({ item, index }) => <ItemBuyTerminal key={index} {...item} />;
 
@@ -94,7 +97,11 @@ export default class BuyTerminal extends React.Component {
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index.toString()}
         />
-        <ButtonColor style={base.button1} title="Выставить ордер на продажу" />
+        <ButtonColor
+          style={base.button1}
+          title="Выставить ордер на продажу"
+          onPress={this.onPress}
+        />
       </Wrap>
     );
   }
