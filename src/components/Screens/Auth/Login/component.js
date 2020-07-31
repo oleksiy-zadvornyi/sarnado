@@ -1,31 +1,31 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import Image from "react-native-scalable-image";
+import React from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import Image from 'react-native-scalable-image';
 
 // Components
-import Wrap from "../../../UI/Base/Wrap";
-import InputText from "../../../UI/Input/InputText";
-import ButtonColor from "../../../UI/Button/ButtonColor";
+import Wrap from '../../../UI/Base/Wrap';
+import InputText from '../../../UI/Input/InputText';
+import ButtonColor from '../../../UI/Button/ButtonColor';
 
 // Helpers
-import * as Images from "../../../../helpers/images";
-import { navigate } from "../../../../helpers/navigation";
+import * as Images from '../../../../helpers/images';
+import {navigate} from '../../../../helpers/navigation';
 
 // Style
-import { base } from "./styles";
+import {base} from './styles';
 
 export default class SignIn extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      login: "",
-      password: "",
+      login: '',
+      password: '',
     };
   }
 
-  onChangeEmail = (login) => this.setState({ login });
-  onChangePassword = (password) => this.setState({ password });
+  onChangeEmail = (login) => this.setState({login});
+  onChangePassword = (password) => this.setState({password});
 
   refPassword = (ref) => (this.password = ref);
   nextPassword = () => this.password.focus();
@@ -33,14 +33,14 @@ export default class SignIn extends React.Component {
   done = () => {};
 
   render() {
-    const { login, password } = this.state;
+    const {login, password} = this.state;
     return (
       <Wrap>
         <View style={base.flex} />
         <Image source={Images.logo} height={40} />
         <View style={base.flex} />
         <Text style={base.text1}>
-          Приветствуем вас на эскроу-сервисе!{"\n"}Здесь вы можете купить и
+          Приветствуем вас на эскроу-сервисе!{'\n'}Здесь вы можете купить и
           продать криптовалюту таким же пользователям как и вы, а мы сделаем
           так, чтобы сделка прошла без проблем!
         </Text>
@@ -74,13 +74,13 @@ export default class SignIn extends React.Component {
         <View style={base.flex} />
         <View style={base.flex} />
         <Text style={base.text3}>
-          Если у вас еще нет аккаунта,{"\n"}то пройдите простую регистрацию
+          Если у вас еще нет аккаунта,{'\n'}то пройдите простую регистрацию
         </Text>
 
         <ButtonColor
           style={base.button2}
           title="Зарегистрироваться"
-          onPress={() => navigate("Registration")}
+          onPress={() => navigate('Registration')}
         />
       </Wrap>
     );

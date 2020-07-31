@@ -1,13 +1,13 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import Image from "react-native-scalable-image";
-import Modal from "react-native-modal";
+import React from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import Image from 'react-native-scalable-image';
+import Modal from 'react-native-modal';
 
 // Helpers
-import * as Images from "../../../../helpers/images";
+import * as Images from '../../../../helpers/images';
 
 // Style
-import { base } from "./styles";
+import {base} from './styles';
 
 export default class PickerLarge extends React.Component {
   constructor(props) {
@@ -17,35 +17,33 @@ export default class PickerLarge extends React.Component {
     };
   }
 
-  onPressShow = () => this.setState({ isVisible: true });
-  onPressHide = () => this.setState({ isVisible: false });
+  onPressShow = () => this.setState({isVisible: true});
+  onPressHide = () => this.setState({isVisible: false});
   onPressSelect = (e, i) => {
-    const { onSelect } = this.props;
+    const {onSelect} = this.props;
     this.onPressHide();
     onSelect && onSelect(e, i);
   };
 
   render() {
-    const { title, data } = this.props;
-    const { isVisible } = this.state;
+    const {style, index, placeholder, data} = this.props;
+    const {isVisible} = this.state;
     return (
-      <TouchableOpacity style={base.wrap1} onPress={this.onPressShow}>
-        <Text style={base.text1}>{title}</Text>
+      <TouchableOpacity style={[base.wrap1, style]} onPress={this.onPressShow}>
+        <Text style={base.text1}>{index >= 0 ? data[index] : placeholder}</Text>
         <View style={base.flex} />
         <Image style={base.tintColor1} source={Images.down} width={12} />
         <Modal
           style={base.center}
           isVisible={isVisible}
           onBackdropPress={this.onPressHide}
-          onBackButtonPress={this.onPressHide}
-        >
+          onBackButtonPress={this.onPressHide}>
           <View style={base.wrap2}>
             {data.map((e, i) => (
               <TouchableOpacity
                 key={i}
                 style={i !== data.length - 1 && base.border}
-                onPress={() => this.onPressSelect(e, i)}
-              >
+                onPress={() => this.onPressSelect(e, i)}>
                 <Text style={base.text2}>{e}</Text>
               </TouchableOpacity>
             ))}

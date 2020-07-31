@@ -1,15 +1,13 @@
 import React from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import Image from 'react-native-scalable-image';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import {View, Text, TextInput} from 'react-native';
 
 // Components
 import Wrap from '../../../UI/Base/Wrap';
 import ButtonColor from '../../../UI/Button/ButtonColor';
-
-// Helpers
-import * as Images from '../../../../helpers/images';
-import {goBack} from '../../../../helpers/navigation';
+import WrapBack from '../../../UI/Wrap/WrapBack';
+import WrapWarningBuy from '../../../UI/Wrap/WrapWarningBuy';
+import WrapCourse from '../../../UI/Wrap/WrapCourse';
+import InputButtonsText from '../../../UI/Input/InputButtonsText';
 
 // Style
 import {base} from './styles';
@@ -19,84 +17,58 @@ export default class OpenDealBuy extends React.Component {
     super(props);
 
     this.state = {
+      upload: '8004,72',
+      download: '111,238513242519',
       message: '',
     };
   }
 
+  onChangeUpload = (upload) => this.setState({upload});
+  onChangeDownload = (download) => this.setState({download});
   onChangeMessage = (message) => this.setState({message});
 
   render() {
-    const {message} = this.state;
+    const {upload, download, message} = this.state;
     return (
-      <Wrap>
+      <Wrap titleView={<WrapBack />}>
         <View style={base.wrap1}>
-          <View style={base.wrap3}>
-            <TouchableOpacity style={base.wrap2} onPress={goBack}>
-              <Image source={Images.left} height={wp(3)} />
-              <View style={base.wrap3}>
-                <Text style={base.text1}>Назад</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={base.wrap4}>
-          <Text style={base.text2}>
-            <Text style={base.text3}>Внимание!</Text>
-            {'\n'}
-            Вы начинаете процедуру покупки!{'\n'}Вы покупаете{' '}
-            <Text style={base.text3}>USDT</Text> у пользователя{' '}
-            <Text style={[base.text3, base.text4]}>fortdeal</Text> переводом RUB
-            на карту Сбербанк
-          </Text>
+          <WrapWarningBuy
+            cryptoCurrency="USDT"
+            currency="RUB"
+            userName="fortdeal"
+            card="Сбербанк"
+          />
 
-          <View style={base.wrap5}>
-            <Text style={base.text5}>
-              Продавец установил курс{'\n'}1 USDT = 71.73 RUB{'\n'}Продолжайте
-              только если он вас устраивает!
-            </Text>
-          </View>
+          <WrapCourse
+            cryptoCurrency="USDT"
+            cryptoCount="1"
+            currency="RUB"
+            currencyCount="71.73"
+          />
 
-          <Text style={base.text6}>
-            <Text style={base.text7}>Открытие сделки</Text>
+          <Text style={base.text1}>
+            <Text style={base.text2}>Открытие сделки</Text>
             {'\n'}Минимальная сумма сделки 8004.72 RUB{'\n'}Максимальная сумма
             сделки 8004.72 RUB
           </Text>
 
-          <Text style={base.text8}>Вы отправляете</Text>
-          <View style={base.wrap6}>
-            <View style={base.wrap7}>
-              <Text style={base.text9}>min</Text>
-            </View>
-            <View style={base.wrap9}>
-              <Text style={base.text10}>max</Text>
-            </View>
-            <View style={base.wrap10}>
-              <Text style={base.text11}>8004,72</Text>
-            </View>
-            <View style={base.wrap8}>
-              <Text style={base.text12}>RUB</Text>
-            </View>
-          </View>
+          <Text style={base.text3}>Вы отправляете</Text>
+          <InputButtonsText
+            value={upload}
+            currency="RUB"
+            onChangeText={this.onChangeUpload}
+          />
 
-          <Text style={base.text8}>Вы получаете</Text>
-          <View style={base.wrap6}>
-            <View style={base.wrap7}>
-              <Text style={base.text9}>min</Text>
-            </View>
-            <View style={base.wrap9}>
-              <Text style={base.text10}>max</Text>
-            </View>
-            <View style={base.wrap10}>
-              <Text style={base.text11}>111,238513242519</Text>
-            </View>
-            <View style={base.wrap8}>
-              <Text style={base.text12}>USDT</Text>
-            </View>
-          </View>
+          <Text style={base.text3}>Вы получаете</Text>
+          <InputButtonsText
+            value={download}
+            currency="USDT"
+            onChangeText={this.onChangeDownload}
+          />
 
-          <Text style={base.text13}>Отправьте сообщение (обязательно)</Text>
+          <Text style={base.text4}>Отправьте сообщение (обязательно)</Text>
           <TextInput
-            style={base.text14}
+            style={base.text5}
             value={message}
             placeholder="Поздоровайтесь. Мы рекомендуем использовать шифрованные сообщения для отправки платежных данных."
             placeholderTextColor="#5A5A5A"
@@ -109,8 +81,8 @@ export default class OpenDealBuy extends React.Component {
           style={base.button1}
           title="Открыть сделку"
         />
-        <View style={base.wrap4}>
-          <Text style={base.text15}>
+        <View style={base.wrap1}>
+          <Text style={base.text6}>
             После открытия сделки сообщения шифруются для защиты вашей
             конфиденциальности. Мы сможем их прочесть только в случае инициации
             спора одной из сторон.

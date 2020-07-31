@@ -1,18 +1,18 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import Image from "react-native-scalable-image";
+import React from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import Image from 'react-native-scalable-image';
 
 // Components
-import Wrap from "../../../UI/Base/Wrap";
-import InputText from "../../../UI/Input/InputText";
-import ButtonColor from "../../../UI/Button/ButtonColor";
+import Wrap from '../../../UI/Base/Wrap';
+import InputText from '../../../UI/Input/InputText';
+import ButtonColor from '../../../UI/Button/ButtonColor';
 
 // Helpers
-import * as Images from "../../../../helpers/images";
+import * as Images from '../../../../helpers/images';
 
 // Style
-import { base } from "./styles";
-import { navigate } from "../../../../helpers/navigation";
+import {base} from './styles';
+import {navigate} from '../../../../helpers/navigation';
 
 export default class ChooseTheRide extends React.Component {
   constructor(props) {
@@ -22,16 +22,20 @@ export default class ChooseTheRide extends React.Component {
   }
 
   onPressBuyTerminal = () => {
-    navigate("BuyTerminal");
+    navigate('BuyTerminal');
   };
 
   onPressSellTerminal = () => {
-    navigate("SellTerminal");
+    navigate('SellTerminal');
+  };
+
+  onPressStep = () => {
+    navigate('Step1');
   };
 
   render() {
     return (
-      <Wrap noScroll>
+      <Wrap>
         <View style={base.flex} />
         <Image source={Images.logo} height={40} />
         <View style={base.flex} />
@@ -59,6 +63,7 @@ export default class ChooseTheRide extends React.Component {
           style={base.button2}
           styleTouchable={base.margin1}
           title="Выставить ордер на продажу"
+          onPress={this.onPressStep}
         />
         <ButtonColor style={base.button1} title="Выставить ордер на покупку" />
         <View style={base.flex} />

@@ -1,70 +1,19 @@
-import React from "react";
-import { View, Text, FlatList } from "react-native";
-import Image from "react-native-scalable-image";
+import React from 'react';
+import {View, Text, FlatList} from 'react-native';
 
 // Components
-import Wrap from "../../../UI/Base/Wrap";
-import ItemBuyTerminal from "../../../UI/Item/ItemBuyTerminal";
-import ButtonColor from "../../../UI/Button/ButtonColor";
-import Sort from "../../../UI/Sort";
+import Wrap from '../../../UI/Base/Wrap';
+import ItemBuyTerminal from '../../../UI/Item/ItemBuyTerminal';
+import ButtonColor from '../../../UI/Button/ButtonColor';
+import Sorts from '../../../UI/Sort/Sorts';
 
 // Helpers
-import * as Images from "../../../../helpers/images";
+import {navigate} from '../../../../helpers/navigation';
 
 // Style
-import { base } from "./styles";
-import { navigate } from "../../../../helpers/navigation";
+import {base} from './styles';
 
-const DATA = [
-  {
-    isOnline: true,
-    isVerify: true,
-    name: "Bitservice",
-    icon: null,
-    rating: 4,
-    country: "Россия",
-    method: "Сбербанк (Российский рубль)",
-    size: 0.02060073,
-    limit: {
-      min: 10000,
-      max: 13789,
-    },
-    course: 677011.82,
-    currency: "RUB",
-  },
-  {
-    isOnline: true,
-    isVerify: true,
-    name: "Bitservice",
-    icon: null,
-    rating: 4,
-    country: "Россия",
-    method: "Сбербанк (Российский рубль)",
-    size: 0.02060073,
-    limit: {
-      min: 10000,
-      max: 13789,
-    },
-    course: 677011.82,
-    currency: "RUB",
-  },
-  {
-    isOnline: true,
-    isVerify: true,
-    name: "Bitservice",
-    icon: null,
-    rating: 4,
-    country: "Россия",
-    method: "Сбербанк (Российский рубль)",
-    size: 0.02060073,
-    limit: {
-      min: 10000,
-      max: 13789,
-    },
-    course: 677011.82,
-    currency: "RUB",
-  },
-];
+import {DATA} from './staticData';
 
 export default class BuyTerminal extends React.Component {
   constructor(props) {
@@ -74,25 +23,25 @@ export default class BuyTerminal extends React.Component {
   }
 
   onPress = () => {
-    navigate("Step1");
+    navigate('Step1');
   };
 
-  renderItem = ({ item, index }) => <ItemBuyTerminal key={index} {...item} />;
+  renderItem = ({item, index}) => <ItemBuyTerminal key={index} {...item} />;
 
   render() {
-    const { country } = this.state;
     return (
       <Wrap noScroll>
         <View style={base.wrap1}>
           <Text style={base.text1}>
-            Здесь вы можете купить криптовалюту{"\n"}или выставить свой ордер на
+            Здесь вы можете купить криптовалюту{'\n'}или выставить свой ордер на
             продажу
           </Text>
         </View>
-        <Sort />
+        <Sorts />
 
         <FlatList
           data={DATA}
+          showsVerticalScrollIndicator={false}
           extraData={this.props}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index.toString()}

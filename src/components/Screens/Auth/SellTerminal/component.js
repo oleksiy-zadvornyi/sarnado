@@ -1,65 +1,16 @@
-import React from "react";
-import { View, Text, FlatList } from "react-native";
+import React from 'react';
+import {View, Text, FlatList} from 'react-native';
 
 // Components
-import Wrap from "../../../UI/Base/Wrap";
-import ItemSellTerminal from "../../../UI/Item/ItemSellTerminal";
-import ButtonColor from "../../../UI/Button/ButtonColor";
-import Sort from "../../../UI/Sort";
+import Wrap from '../../../UI/Base/Wrap';
+import ItemSellTerminal from '../../../UI/Item/ItemSellTerminal';
+import ButtonColor from '../../../UI/Button/ButtonColor';
+import Sorts from '../../../UI/Sort/Sorts';
 
 // Style
-import { base } from "./styles";
+import {base} from './styles';
 
-const DATA = [
-  {
-    isOnline: true,
-    isVerify: true,
-    name: "Bitservice",
-    icon: null,
-    rating: 4,
-    country: "Россия",
-    method: "Сбербанк (Российский рубль)",
-    size: 0.02060073,
-    limit: {
-      min: 10000,
-      max: 13789,
-    },
-    course: 677011.82,
-    currency: "RUB",
-  },
-  {
-    isOnline: true,
-    isVerify: true,
-    name: "Bitservice",
-    icon: null,
-    rating: 4,
-    country: "Россия",
-    method: "Сбербанк (Российский рубль)",
-    size: 0.02060073,
-    limit: {
-      min: 10000,
-      max: 13789,
-    },
-    course: 677011.82,
-    currency: "RUB",
-  },
-  {
-    isOnline: true,
-    isVerify: true,
-    name: "Bitservice",
-    icon: null,
-    rating: 4,
-    country: "Россия",
-    method: "Сбербанк (Российский рубль)",
-    size: 0.02060073,
-    limit: {
-      min: 10000,
-      max: 13789,
-    },
-    course: 677011.82,
-    currency: "RUB",
-  },
-];
+import {DATA} from './staticData';
 
 export default class SellTerminal extends React.Component {
   constructor(props) {
@@ -68,21 +19,22 @@ export default class SellTerminal extends React.Component {
     this.state = {};
   }
 
-  renderItem = ({ item, index }) => <ItemSellTerminal key={index} {...item} />;
+  renderItem = ({item, index}) => <ItemSellTerminal key={index} {...item} />;
 
   render() {
     return (
       <Wrap noScroll>
         <View style={base.wrap1}>
           <Text style={base.text1}>
-            Здесь вы можете продать криптовалюту{"\n"}
+            Здесь вы можете продать криптовалюту{'\n'}
             или выставить свой ордер на покупку
           </Text>
         </View>
-        <Sort />
+        <Sorts />
 
         <FlatList
           data={DATA}
+          showsVerticalScrollIndicator={false}
           extraData={this.props}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => index.toString()}

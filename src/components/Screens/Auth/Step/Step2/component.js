@@ -1,20 +1,20 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import Image from "react-native-scalable-image";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import React from 'react';
+import {View, Text} from 'react-native';
 
 // Components
-import Wrap from "../../../../UI/Base/Wrap";
-import PickerLarge from "../../../../UI/Picker/PickerLarge";
+import Wrap from '../../../../UI/Base/Wrap';
+import PickerLarge from '../../../../UI/Picker/PickerLarge';
+import WrapExit from '../../../../UI/Wrap/WrapExit';
+import WrapCircle from '../../../../UI/Wrap/WrapCircle';
+import WrapStepButtons from '../../../../UI/Wrap/WrapStepButtons';
 
 // Helpers
-import * as Images from "../../../../../helpers/images";
-import { navigate, goBack } from "../../../../../helpers/navigation";
+import {navigate} from '../../../../../helpers/navigation';
 
 // Style
-import { base } from "./styles";
+import {base} from './styles';
 
-const DATA = ["Text1", "Text2", "Text3"];
+const DATA = ['Text1', 'Text2', 'Text3'];
 
 export default class Step2 extends React.Component {
   constructor(props) {
@@ -26,70 +26,47 @@ export default class Step2 extends React.Component {
     };
   }
 
-  onPress = () => {
-    // navigate("Step3");
+  onPressNext = () => {
+    navigate('Step3');
   };
 
-  onSelect1 = (e, i) => this.setState({ picker1: i });
-  onSelect2 = (e, i) => this.setState({ picker2: i });
+  onSelect1 = (e, i) => this.setState({picker1: i});
+  onSelect2 = (e, i) => this.setState({picker2: i});
 
   render() {
-    const { picker1, picker2 } = this.state;
+    const {picker1, picker2} = this.state;
     return (
-      <Wrap>
-        <View style={base.wrap1}>
-          <View style={base.wrap3}>
-            <TouchableOpacity style={base.wrap2}>
-              <Image source={Images.left} height={wp(3)} />
-              <View style={base.wrap3}>
-                <Text style={base.text1}>Выйти</Text>
-              </View>
-            </TouchableOpacity>
-            <View style={base.flex} />
-            <Text style={base.text2}>Вы выставляеете ордер на продажу</Text>
-          </View>
-        </View>
-        <View style={base.wrap4}>
-          <View style={base.flex} />
-          <Text style={base.text3}>2</Text>
-          <View style={base.flex} />
-        </View>
+      <Wrap titleView={<WrapExit title="Вы выставляете ордер на продажу" />}>
+        <WrapCircle title="2" />
 
-        <Text style={base.text4}>
+        <Text style={base.text1}>
           Каким способом вы хотите продать криптовалюту?
         </Text>
         <PickerLarge
-          title={picker1 >= 0 ? DATA[picker1] : "Как будете получать?"}
           data={DATA}
+          index={picker1}
+          placeholder="Как будете получать?"
           onSelect={this.onSelect1}
         />
 
-        <Text style={[base.text4, base.margin1]}>
+        <Text style={[base.text1, base.margin1]}>
           В какой валюте вы хотите получить перевод?
         </Text>
         <PickerLarge
-          title={picker2 >= 0 ? DATA[picker2] : "Выберите валюту"}
           data={DATA}
+          index={picker2}
+          placeholder="Выберите валюту"
           onSelect={this.onSelect2}
         />
 
         <View style={base.flex} />
-        <Text style={base.text6}>
+        <Text style={base.text2}>
           Обязательно учитывайте возможность приема средств в выбраной валюте Не
           все банки по умолчанию принимают разную валюту, во многих для этого
           необходимо открыть соотвествующий тип счета
         </Text>
         <View style={base.flex} />
-
-        <View style={base.wrap5}>
-          <TouchableOpacity style={base.wrap6} onPress={goBack}>
-            <Text style={base.text5}>Предыдущий</Text>
-          </TouchableOpacity>
-          <View style={base.wrap8} />
-          <TouchableOpacity style={base.wrap7} onPress={this.onPress}>
-            <Text style={base.text5}>Далее</Text>
-          </TouchableOpacity>
-        </View>
+        <WrapStepButtons onPressNext={this.onPressNext} />
       </Wrap>
     );
   }

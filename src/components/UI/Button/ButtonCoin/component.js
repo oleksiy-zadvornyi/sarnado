@@ -1,11 +1,17 @@
-import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
-import Image from "react-native-scalable-image";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import React from 'react';
+import {Text, TouchableOpacity, View} from 'react-native';
+import Image from 'react-native-scalable-image';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+
 // Style
-import { base } from "./styles";
+import {base} from './styles';
 
 export default class ButtonCoin extends React.Component {
+  onPress = () => {
+    const {index, onPress} = this.props;
+    onPress(index);
+  };
+
   render() {
     const {
       style,
@@ -16,7 +22,6 @@ export default class ButtonCoin extends React.Component {
       title,
       icon,
       noTintColor,
-      onPress,
     } = this.props;
 
     if (select) {
@@ -24,8 +29,7 @@ export default class ButtonCoin extends React.Component {
         <TouchableOpacity
           style={styleTouchable}
           accessibilityRole="button"
-          onPress={onPress}
-        >
+          onPress={this.onPress}>
           <View style={[base.wrap2, style]}>
             <Text style={[base.text2, styleText]}>{currency}</Text>
             <View style={base.flex} />
@@ -45,8 +49,7 @@ export default class ButtonCoin extends React.Component {
       <TouchableOpacity
         style={styleTouchable}
         accessibilityRole="button"
-        onPress={onPress}
-      >
+        onPress={this.onPress}>
         <View style={[base.wrap1, style]}>
           <Text style={[base.text1, styleText]}>{currency}</Text>
           <View style={base.flex} />

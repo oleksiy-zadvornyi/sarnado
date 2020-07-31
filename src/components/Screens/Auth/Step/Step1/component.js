@@ -1,19 +1,20 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import Image from "react-native-scalable-image";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import React from 'react';
+import {View, Text} from 'react-native';
 
 // Components
-import Wrap from "../../../../UI/Base/Wrap";
-import ButtonCoin from "../../../../UI/Button/ButtonCoin";
-// import ModalExit from "../../../../UI/Modal/ModalExit";
+import Wrap from '../../../../UI/Base/Wrap';
+import ButtonCoin from '../../../../UI/Button/ButtonCoin';
+import WrapExit from '../../../../UI/Wrap/WrapExit';
+import WrapCircle from '../../../../UI/Wrap/WrapCircle';
+import WrapStepButtons from '../../../../UI/Wrap/WrapStepButtons';
 
 // Helpers
-import * as Images from "../../../../../helpers/images";
-import { navigate } from "../../../../../helpers/navigation";
+import {navigate} from '../../../../../helpers/navigation';
 
 // Style
-import { base } from "./styles";
+import {base} from './styles';
+
+import {DATA} from './staticData';
 
 export default class Step1 extends React.Component {
   constructor(props) {
@@ -21,111 +22,43 @@ export default class Step1 extends React.Component {
 
     this.state = {
       index: 0,
-      isVisible: true,
     };
   }
 
-  onPress = () => {
-    navigate("Step2");
+  onPressNext = () => {
+    navigate('Step2');
   };
 
-  onPressHide = () => this.setState({ isVisible: false });
-  onPressShow = () => this.setState({ isVisible: true });
-
-  onPressBitcoin = () => this.setState({ index: 1 });
-  onPressEtherium = () => this.setState({ index: 2 });
-  onPressRipple = () => this.setState({ index: 3 });
-  onPressTetherOmni = () => this.setState({ index: 4 });
-  onPressTetherErc20 = () => this.setState({ index: 5 });
-  onPressSarnado = () => this.setState({ index: 6 });
+  onPressButton = (index) => this.setState({index});
 
   render() {
-    const { index, isVisible } = this.state;
+    const {index} = this.state;
 
     return (
-      <Wrap>
-        <View style={base.wrap1}>
-          <View style={base.wrap3}>
-            <TouchableOpacity style={base.wrap2} onPress={this.onPressShow}>
-              <Image source={Images.left} height={wp(3)} />
-              <View style={base.wrap3}>
-                <Text style={base.text1}>Выйти</Text>
-              </View>
-            </TouchableOpacity>
-            <View style={base.flex} />
-            <Text style={base.text2}>Вы выставляеете ордер на продажу</Text>
-          </View>
-        </View>
+      <Wrap titleView={<WrapExit title="Вы выставляете ордер на продажу" />}>
+        <WrapCircle title="1" />
 
-        {/* <ModalExit onPressHide={this.onPressHide} /> */}
-
-        <View style={base.wrap4}>
-          <View style={base.flex} />
-          <Text style={base.text3}>1</Text>
-          <View style={base.flex} />
-        </View>
-        <Text style={base.text4}>
+        <Text style={base.text1}>
           Выберите криптовалюту, которую хотели вы бы хотели продать
         </Text>
-        <ButtonCoin
-          styleTouchable={base.margin1}
-          select={index === 1}
-          currency="ВТС"
-          title="BITCOIN"
-          icon={Images.btc}
-          onPress={this.onPressBitcoin}
-        />
-        <ButtonCoin
-          styleTouchable={base.margin1}
-          select={index === 2}
-          currency="ETH"
-          title="ETHERIUM"
-          icon={Images.eth}
-          onPress={this.onPressEtherium}
-        />
-        <ButtonCoin
-          styleTouchable={base.margin1}
-          select={index === 3}
-          currency="XRP"
-          title="RIPPLE"
-          icon={Images.xrp}
-          onPress={this.onPressRipple}
-        />
-        <ButtonCoin
-          styleTouchable={base.margin1}
-          select={index === 4}
-          currency="USDT"
-          title="TETHER OMNI"
-          icon={Images.usdt}
-          onPress={this.onPressTetherOmni}
-        />
-        <ButtonCoin
-          styleTouchable={base.margin1}
-          select={index === 5}
-          currency="USDT"
-          title="TETHER OMNI"
-          icon={Images.usdt}
-          onPress={this.onPressTetherErc20}
-        />
-        <ButtonCoin
-          styleTouchable={base.margin1}
-          select={index === 6}
-          currency="ISA"
-          title="SARNADO"
-          noTintColor
-          icon={Images.isa}
-          onPress={this.onPressSarnado}
-        />
+
+        {DATA.map((e, i) => (
+          <ButtonCoin
+            key={i}
+            styleTouchable={base.margin1}
+            select={index === i + 1}
+            index={i + 1}
+            currency={e.currency}
+            title={e.title}
+            icon={e.icon}
+            noTintColor={e.noTintColor || false}
+            onPress={this.onPressButton}
+          />
+        ))}
+
         <View style={base.flex} />
-        <View style={base.wrap5}>
-          <TouchableOpacity disabled style={base.wrap6}>
-            <Text style={base.text5}>Предыдущий</Text>
-          </TouchableOpacity>
-          <View style={base.wrap8} />
-          <TouchableOpacity style={base.wrap7} onPress={this.onPress}>
-            <Text style={base.text6}>Далее</Text>
-          </TouchableOpacity>
-        </View>
+
+        <WrapStepButtons disabledBack onPressNext={this.onPressNext} />
       </Wrap>
     );
   }

@@ -3,40 +3,43 @@ import {View, TouchableOpacity, Text, StyleSheet, Platform} from 'react-native';
 import Image from 'react-native-scalable-image';
 import * as Images from '../../../helpers/images';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import {navigate} from '../../../helpers/navigation';
 
 export function TabBar() {
   const routes = [
     {
       key: 'pay',
       name: 'Купить',
-      onPress: '',
+      onPress: 'BuyTerminal',
     },
     {
       key: 'sell',
       name: 'Продать',
-      onPress: '',
+      onPress: 'SellTerminal',
     },
     {
       key: 'replenish',
       name: 'Пополнить',
-      onPress: '',
+      onPress: 'Wallets',
     },
     {
       key: 'withdraw',
       name: 'Вывести',
-      onPress: '',
+      onPress: 'Wallets',
     },
     {
       key: 'cabinet',
       name: 'Кабинет',
-      onPress: '',
+      onPress: 'Account',
     },
   ];
 
   return (
     <View style={base.flexDirection}>
       {routes.map((route, index) => {
-        const onPress = () => {};
+        const onPress = () => {
+          navigate(route.onPress);
+        };
 
         return (
           <TouchableOpacity key={route.key} onPress={onPress} style={base.wrap}>

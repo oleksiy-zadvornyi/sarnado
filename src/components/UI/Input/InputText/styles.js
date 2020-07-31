@@ -7,7 +7,7 @@ export const base = StyleSheet.create({
     alignItems: 'center',
   },
   wrap: {
-    width: wp(100) - 40,
+    width: wp(100) - 26,
     height: wp(11),
     backgroundColor: 'white',
   },

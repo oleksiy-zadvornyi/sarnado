@@ -28,6 +28,7 @@ export default class InputText extends React.Component {
       title,
       value,
       multiline,
+      editable,
       textContentType,
       autoCapitalize,
       secureTextEntry,
@@ -46,7 +47,7 @@ export default class InputText extends React.Component {
           value={value}
           multiline={multiline}
           placeholder={title}
-          placeholderTextColor="rgba(60, 60, 67, 0.3)"
+          placeholderTextColor="#898989"
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize || 'none'}
           textContentType={textContentType || 'none'}
@@ -54,6 +55,7 @@ export default class InputText extends React.Component {
             secureTextEntry &&
             'required: lower; required: upper; required: digit; required: [-]; minlength: 6; maxlength: 40;'
           }
+          editable={editable}
           autoCorrect={false}
           underlineColorAndroid="transparent"
           clearButtonMode={forgetPassword ? 'never' : 'always'}

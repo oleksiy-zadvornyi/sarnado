@@ -1,53 +1,52 @@
-import { StyleSheet } from "react-native";
-import { widthPercentageToDP as wp } from "react-native-responsive-screen";
+import {StyleSheet} from 'react-native';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 export const base = StyleSheet.create({
   flex: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
   },
   center: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   border: {
-    borderBottomColor: "black",
+    borderBottomColor: 'black',
     borderBottomWidth: 1,
   },
   tintColor1: {
-    tintColor: "black",
+    tintColor: 'black',
   },
   text1: {
-    fontFamily: "Roboto",
+    fontFamily: 'RobotoBold',
     fontSize: wp(6),
-    fontWeight: "bold",
-    color: "black",
-    marginRight: wp(1),
+    color: 'black',
+    marginRight: wp(2),
   },
   text2: {
-    textAlign: "center",
-    fontFamily: "Roboto",
+    textAlign: 'center',
+    fontFamily: 'Roboto',
     fontSize: wp(4.5),
-    color: "black",
+    color: 'black',
     lineHeight: wp(5),
     paddingVertical: wp(4),
     paddingHorizontal: wp(2),
   },
   wrap1: {
-    width: wp(100) - 24,
-    backgroundColor: "#C4C4C4",
-    flexDirection: "row",
-    alignItems: "center",
+    width: wp(100) - 26,
+    backgroundColor: '#C4C4C4',
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingVertical: wp(4),
     paddingHorizontal: wp(5.5),
     borderRadius: wp(1),
   },
   wrap2: {
     minWidth: wp(60),
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderRadius: wp(1),
-    borderColor: "black",
+    borderColor: 'black',
     borderWidth: 0.7,
   },
 });
 
-export default { base };
+export default {base};
