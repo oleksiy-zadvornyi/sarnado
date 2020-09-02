@@ -9,7 +9,7 @@ export const base = StyleSheet.create({
   button1: {
     width: wp(100) - 60,
     height: 31,
-    backgroundColor: '#008316',
+    backgroundColor: '#9A2220',
     marginBottom: wp(2),
     borderColor: 'white',
     borderWidth: 0.7,
@@ -70,6 +70,11 @@ export const base = StyleSheet.create({
     backgroundColor: '#008316',
     paddingHorizontal: wp(1),
   },
+  text8: {
+    fontFamily: 'Roboto',
+    fontSize: wp(2.5),
+    color: '#DEBB00',
+  },
   wrap1: {
     width: wp(100) - 26,
     alignItems: 'center',
@@ -100,6 +105,7 @@ export const base = StyleSheet.create({
     height: 7,
     borderRadius: 7,
     backgroundColor: '#9A2220',
+    marginHorizontal: 8,
   },
   wrap5: {
     marginLeft: 6,

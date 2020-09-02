@@ -1,11 +1,12 @@
-const initialState = {
-  accessToken: '',
-};
+const initialState = {};
 
 export default function initReducer(state = initialState, action) {
   switch (action.type) {
-    case 'logoutUser': {
+    case 'postLogout': {
       return initialState;
+    }
+    case 'postLogin': {
+      return action.data;
     }
     default:
       return state;

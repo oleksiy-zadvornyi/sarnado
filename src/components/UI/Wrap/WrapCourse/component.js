@@ -12,12 +12,12 @@ export default class WrapCourse extends React.Component {
   }
 
   render() {
-    const {cryptoCurrency, cryptoCount, currency, currencyCount} = this.props;
+    const {cryptoCurrency, currency, currencyCount} = this.props;
 
     return (
       <View style={base.wrap1}>
         <Text style={base.text1}>
-          {`Продавец установил курс${'\n'}${cryptoCount} ${cryptoCurrency} = ${currencyCount} ${currency}${'\n'}Продолжайте только если он вас устраивает!`}
+          {`Продавец установил курс${'\n'}1 ${cryptoCurrency} = ${currencyCount} ${currency}${'\n'}Продолжайте только если он вас устраивает!`}
         </Text>
       </View>
     );

@@ -6,9 +6,12 @@ import Image from 'react-native-scalable-image';
 // Components
 import ButtonColor from '../../Button/ButtonColor';
 
+// Helpers
+import * as Images from '../../../../helpers/images';
+import {navigate} from '../../../../helpers/navigation';
+
 // Style
 import {base} from './styles';
-import {navigate} from '../../../../helpers/navigation';
 
 export default class ItemSellTerminal extends React.Component {
   onPressDeposit = () => {
@@ -19,8 +22,30 @@ export default class ItemSellTerminal extends React.Component {
     navigate('Withdrawal');
   };
 
+  getIcon = () => {
+    const {currency_name} = this.props;
+    switch (currency_name) {
+      case 'ETH': {
+        return Images.iconEth;
+      }
+      case 'ISA': {
+        return Images.iconIsa;
+      }
+      case 'USDT':
+      case 'USDT.ERC20': {
+        return Images.iconUsdt;
+      }
+      case 'XRP': {
+        return Images.iconXrp;
+      }
+      case 'BTC': {
+        return Images.iconBtc;
+      }
+    }
+  };
+
   render() {
-    const {available, frozen, currency, icon} = this.props;
+    const {available, freezed, currency_name} = this.props;
 
     return (
       <View style={base.wrap1}>
@@ -31,11 +56,11 @@ export default class ItemSellTerminal extends React.Component {
               style={[
                 base.text2,
                 base.margin1,
-              ]}>{`${available} ${currency}`}</Text>
+              ]}>{`${available} ${currency_name}`}</Text>
             <Text style={base.text1}>Заморожено в ордерах и сделках</Text>
-            <Text style={base.text2}>{`${frozen} ${currency}`}</Text>
+            <Text style={base.text2}>{`${freezed} ${currency_name}`}</Text>
           </View>
-          <Image source={icon} width={wp(16)} />
+          <Image source={this.getIcon()} width={wp(16)} />
         </View>
         <View style={base.wrap4}>
           <ButtonColor

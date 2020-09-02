@@ -1,9 +1,19 @@
 import React from 'react';
+import {YellowBox} from 'react-native';
 import {AppLoading} from 'expo';
 import * as Font from 'expo-font';
 
 import ReduxView from './src/store';
 import Route from './src/route';
+import Toast from './src/components/UI/Base/Toast';
+import NetworkIndicator from './src/components/UI/Base/NetworkIndicator';
+
+YellowBox.ignoreWarnings([
+  'Warning: componentWillMount is deprecated',
+  'Warning: componentWillReceiveProps has been renamed',
+  'Module RCTImageLoader requires',
+  '`useNativeDriver` was not specified',
+]);
 
 export default class App extends React.Component {
   constructor(props) {
@@ -31,6 +41,8 @@ export default class App extends React.Component {
 
     return (
       <ReduxView>
+        <NetworkIndicator />
+        <Toast />
         <Route />
       </ReduxView>
     );

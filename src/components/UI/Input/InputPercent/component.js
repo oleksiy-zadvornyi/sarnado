@@ -10,10 +10,10 @@ import {base} from './styles';
 
 export default class InputPercent extends React.Component {
   render() {
-    const {value, onChangeText} = this.props;
+    const {value, hasError, onChangeText} = this.props;
 
     return (
-      <View style={base.wrap1}>
+      <View style={[base.wrap1, hasError && base.wrap3]}>
         <TextInput
           style={base.text1}
           value={value}

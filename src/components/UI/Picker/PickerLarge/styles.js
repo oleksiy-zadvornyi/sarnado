@@ -1,5 +1,8 @@
 import {StyleSheet} from 'react-native';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 export const base = StyleSheet.create({
   flex: {
@@ -42,6 +45,7 @@ export const base = StyleSheet.create({
   },
   wrap2: {
     minWidth: wp(60),
+    maxHeight: hp(80),
     backgroundColor: 'white',
     borderRadius: wp(1),
     borderColor: 'black',

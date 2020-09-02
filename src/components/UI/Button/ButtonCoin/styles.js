@@ -32,14 +32,12 @@ export const base = StyleSheet.create({
   },
   text1: {
     fontFamily: 'RobotoBold',
-    fontSize: wp(6),
-
+    fontSize: wp(4),
     color: 'black',
   },
   text2: {
     fontFamily: 'RobotoBold',
-    fontSize: wp(6),
-
+    fontSize: wp(4),
     color: 'white',
   },
 });

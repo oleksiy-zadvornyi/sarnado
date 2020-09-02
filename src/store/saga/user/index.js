@@ -1,0 +1,97 @@
+import {put} from 'redux-saga/effects';
+
+import * as Api from '../../api/user';
+import {_catch} from '../../../helpers';
+
+export function* fetchPostLogin(action) {
+  try {
+    yield put({type: 'networkIndicator', data: true});
+    const user = yield Api.postLogin(action.data);
+    console.log('postLogin -> ', user);
+    const profile = yield Api.getUser({user: user.data});
+    console.log('getUser -> ', profile);
+    yield put({type: 'postLogin', data: user.data});
+    yield put({type: 'getUser', data: profile.data});
+  } catch (error) {
+    yield* _catch(error, 'postLogin');
+  } finally {
+    yield put({type: 'networkIndicator', data: false});
+  }
+}
+
+export function* fetchPostSettingsPhoneStore(action) {
+  try {
+    yield put({type: 'networkIndicator', data: true});
+    const user = yield Api.postSettingsPhoneStore(action.data);
+    console.log('postSettingsPhoneStore -> ', user);
+    yield put({type: 'postSettingsPhoneStore', data: action.data.data});
+  } catch (error) {
+    yield* _catch(error, 'postSettingsPhoneStore');
+  } finally {
+    yield put({type: 'networkIndicator', data: false});
+  }
+}
+
+export function* fetchPatchSettingsPassword(action) {
+  try {
+    yield put({type: 'networkIndicator', data: true});
+    const user = yield Api.patchSettingsPassword(action.data);
+    console.log('patchSettingsPassword -> ', user);
+  } catch (error) {
+    yield* _catch(error, 'patchSettingsPassword');
+  } finally {
+    yield put({type: 'networkIndicator', data: false});
+  }
+}
+
+export function* fetchPatchSettingsGeoUpdate(action) {
+  try {
+    yield put({type: 'networkIndicator', data: true});
+    const user = yield Api.patchSettingsGeoUpdate(action.data);
+    console.log('patchSettingsGeoUpdate -> ', user);
+    yield put({type: 'patchSettingsGeoUpdate', data: user.data});
+  } catch (error) {
+    yield* _catch(error, 'patchSettingsGeoUpdate');
+  } finally {
+    yield put({type: 'networkIndicator', data: false});
+  }
+}
+
+export function* fetchPatchSettingsFiat(action) {
+  try {
+    yield put({type: 'networkIndicator', data: true});
+    const user = yield Api.patchSettingsFiat(action.data);
+    console.log('patchSettingsFiat -> ', user);
+    yield put({type: 'patchSettingsFiat', data: action.data.data});
+  } catch (error) {
+    yield* _catch(error, 'patchSettingsFiat');
+  } finally {
+    yield put({type: 'networkIndicator', data: false});
+  }
+}
+
+export function* fetchPatchSettingsLocalBtcAccount(action) {
+  try {
+    yield put({type: 'networkIndicator', data: true});
+    const user = yield Api.patchSettingsLocalBtcAccount(action.data);
+    console.log('patchSettingsLocalBtcAccount -> ', user);
+    yield put({type: 'patchSettingsLocalBtcAccount', data: action.data.data});
+  } catch (error) {
+    yield* _catch(error, 'patchSettingsLocalBtcAccount');
+  } finally {
+    yield put({type: 'networkIndicator', data: false});
+  }
+}
+
+export function* fetchPostLogout(action) {
+  try {
+    yield put({type: 'networkIndicator', data: true});
+    const user = yield Api.postLogout(action.data);
+    console.log('postLogout -> ', user);
+    yield put({type: 'postLogout'});
+  } catch (error) {
+    yield* _catch(error, 'postLogout');
+  } finally {
+    yield put({type: 'networkIndicator', data: false});
+  }
+}

@@ -11,13 +11,13 @@ import {base} from './styles';
 
 export default class ButtonLogout extends React.Component {
   render() {
-    const {style, styleTouchable, styleText, title} = this.props;
+    const {style, styleTouchable, styleText, title, onPress} = this.props;
 
     return (
       <TouchableOpacity
         style={[base.wrap1, styleTouchable]}
         accessibilityRole="button"
-        onPress={this.onPress}>
+        onPress={onPress}>
         <View style={[base.wrap2, style]}>
           <View style={base.flex} />
           <Image source={Images.logout} width={wp(4)} />

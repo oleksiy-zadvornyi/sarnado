@@ -32,7 +32,6 @@ export default class InputText extends React.Component {
       textContentType,
       autoCapitalize,
       secureTextEntry,
-      forgetPassword,
       keyboardType,
       returnKeyType,
       onChangeText,
@@ -58,7 +57,6 @@ export default class InputText extends React.Component {
           editable={editable}
           autoCorrect={false}
           underlineColorAndroid="transparent"
-          clearButtonMode={forgetPassword ? 'never' : 'always'}
           keyboardType={keyboardType ? keyboardType : 'default'}
           returnKeyType={returnKeyType ? returnKeyType : 'done'}
           onChangeText={onChangeText}

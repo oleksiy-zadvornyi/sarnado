@@ -12,21 +12,24 @@ export default class InputIcon extends React.Component {
       style,
       styleText,
       icon,
+      editable,
+      hasError,
       keyboardType,
       returnKeyType,
       onChangeText,
     } = this.props;
 
     return (
-      <View style={[base.wrap1, style]}>
+      <View style={[base.wrap1, hasError && base.wrap3, style]}>
         <TextInput
           style={[base.text1, styleText]}
           value={value}
+          editable={editable}
           keyboardType={keyboardType ? keyboardType : 'default'}
           returnKeyType={returnKeyType ? returnKeyType : 'done'}
           onChangeText={onChangeText}
         />
-        <Image style={base.tintColor1} source={icon} width={32} />
+        {icon && <Image style={base.tintColor1} source={icon} width={32} />}
       </View>
     );
   }

@@ -12,6 +12,7 @@ export const base = StyleSheet.create({
     width: wp(100),
     backgroundColor: '#013347',
     padding: wp(3),
+    justifyContent: 'space-between',
   },
 });
 

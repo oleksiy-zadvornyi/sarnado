@@ -8,8 +8,8 @@ import {base} from './styles';
 
 export default class ButtonTime extends React.Component {
   onPress = () => {
-    const {index, select, onPress} = this.props;
-    onPress(index, select);
+    const {index, onPress} = this.props;
+    onPress(index);
   };
 
   render() {
@@ -17,19 +17,20 @@ export default class ButtonTime extends React.Component {
       style,
       styleTouchable,
       styleText,
-      disabled,
-      select,
+      index,
+      indexes,
       timeOfDay,
       time,
       icon,
     } = this.props;
+    const min = Math.min(...indexes);
+    const max = Math.max(...indexes);
 
-    if (select) {
+    if (index >= min && index <= max) {
       return (
         <TouchableOpacity
           style={styleTouchable}
           accessibilityRole="button"
-          disabled={disabled}
           onPress={this.onPress}>
           <View style={[base.wrap2, style]}>
             <Text style={[base.text2, styleText]}>{timeOfDay}</Text>
@@ -50,7 +51,6 @@ export default class ButtonTime extends React.Component {
       <TouchableOpacity
         style={styleTouchable}
         accessibilityRole="button"
-        disabled={disabled}
         onPress={this.onPress}>
         <View style={[base.wrap1, style]}>
           <Text style={[base.text1, styleText]}>{timeOfDay}</Text>

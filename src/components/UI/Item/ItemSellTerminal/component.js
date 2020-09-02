@@ -16,40 +16,40 @@ import {base} from './styles';
 
 export default class ItemSellTerminal extends React.Component {
   onPress = () => {
-    navigate('OpenDealSell');
+    navigate('OpenDealBuy', {prevProps: this.props});
+  };
+
+  renderVerify = () => {
+    const {email_verified_at, phone_verified_at} = this.props.user;
+    if (email_verified_at) {
+      return <Text style={base.text2}>Верифицирован</Text>;
+    }
+    if (phone_verified_at) {
+      return <Text style={base.text8}>Частично верифицирован</Text>;
+    }
+    return <Text style={base.text3}>Не верифицирован</Text>;
   };
 
   render() {
-    const {
-      isOnline,
-      isVerify,
-      name,
-      icon,
-      rating,
-      country,
-      method,
-      size,
-      limit,
-      course,
-      currency,
-    } = this.props;
+    const {login, amount, price} = this.props;
+    const {crypto, location, direction, limit, fiat} = this.props.data;
+    const {is_online, photo_url, user_rating} = this.props.user;
+    const rating = Math.round(user_rating.total / user_rating.liked / 0.2);
     return (
       <View style={base.wrap1}>
         <View style={base.wrap2}>
-          <View style={isOnline ? base.wrap3 : base.wrap4} />
+          <View style={is_online ? base.wrap3 : base.wrap4} />
           <Image
             style={base.image1}
-            source={icon ? {uri: icon} : Images.icon}
+            source={photo_url ? {uri: photo_url} : Images.icon}
           />
           <View style={base.wrap5}>
-            <Text style={base.text1}>{name}</Text>
-            <Text style={isVerify ? base.text2 : base.text3}>
-              {isVerify ? 'Верифицирован' : 'Не верифицирован'}
-            </Text>
+            <Text style={base.text1}>{login}</Text>
+            {this.renderVerify()}
           </View>
           <View style={base.flex} />
           <Rating value={rating} />
-          <Text style={base.text4}>{country}</Text>
+          <Text style={base.text4}>{location.country.name}</Text>
         </View>
         <View style={base.wrap6}>
           <View style={base.wrap7}>
@@ -59,15 +59,22 @@ export default class ItemSellTerminal extends React.Component {
             <Text style={base.text5}>Курс</Text>
           </View>
           <View style={base.wrap8}>
-            <Text style={base.text6}>{method}</Text>
+            <Text style={base.text6}>{direction.name}</Text>
             <View style={base.wrap9}>
-              <Text style={base.text7}>{size} BTC</Text>
+              <Text style={base.text7}>
+                {amount} {crypto.code}
+              </Text>
             </View>
-            <Text
-              style={
-                base.text5
-              }>{`${limit.min} - ${limit.max} ${currency}`}</Text>
-            <Text style={base.text5}>{`${course} ${currency}`}</Text>
+            {limit.oneTransaction ? (
+              <Text style={base.text5}>Одной сделкой</Text>
+            ) : (
+              <Text
+                style={
+                  base.text5
+                }>{`${limit.min} - ${limit.max} ${fiat.code}`}</Text>
+            )}
+
+            <Text style={base.text5}>{`${price} ${fiat.code}`}</Text>
           </View>
           <ScalableImage
             style={base.image2}
@@ -76,7 +83,7 @@ export default class ItemSellTerminal extends React.Component {
           />
         </View>
         <ButtonColor
-          title="Продать"
+          title="Купить"
           style={base.button1}
           styleText={base.buttonText1}
           onPress={this.onPress}

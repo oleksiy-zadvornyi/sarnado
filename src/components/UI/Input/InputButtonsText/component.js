@@ -6,14 +6,21 @@ import {base} from './styles';
 
 export default class InputButtonsText extends React.Component {
   render() {
-    const {style, value, currency, onChangeText} = this.props;
+    const {
+      style,
+      value,
+      currency,
+      onChangeText,
+      onPressMin,
+      onPressMax,
+    } = this.props;
 
     return (
       <View style={[base.wrap1, style]}>
-        <TouchableOpacity style={base.wrap2}>
+        <TouchableOpacity style={base.wrap2} onPress={onPressMin}>
           <Text style={base.text1}>min</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={base.wrap3}>
+        <TouchableOpacity style={base.wrap3} onPress={onPressMax}>
           <Text style={base.text2}>max</Text>
         </TouchableOpacity>
         <View style={base.wrap4}>

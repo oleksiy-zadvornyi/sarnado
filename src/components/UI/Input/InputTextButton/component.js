@@ -3,6 +3,11 @@ import {View, TextInput} from 'react-native';
 
 // Components
 import ButtonColor from '../../Button/ButtonColor';
+import ModalEditPhone from '../../Modal/ModalEditPhone';
+import ModalEditPassword from '../../Modal/ModalEditPassword';
+import ModalEditCountry from '../../Modal/ModalEditCountry';
+import ModalEditFiat from '../../Modal/ModalEditFiat';
+import ModalEditLocalBitcoins from '../../Modal/ModalEditLocalBitcoins';
 
 // Style
 import {base} from './styles';
@@ -13,6 +18,7 @@ export default class InputTextButton extends React.Component {
 
     this.state = {
       isClear: false,
+      isVisible: false,
     };
   }
 
@@ -22,6 +28,37 @@ export default class InputTextButton extends React.Component {
 
   focus = () => {
     this.input.focus();
+  };
+
+  onPress = () => this.setState({isVisible: true});
+  onPressHide = () => this.setState({isVisible: false});
+
+  renderModal = () => {
+    const {type} = this.props;
+    const {isVisible} = this.state;
+    const props = {
+      isVisible,
+      onPressHide: this.onPressHide,
+      ...this.props,
+    };
+
+    switch (type) {
+      case 'phone': {
+        return <ModalEditPhone {...props} />;
+      }
+      case 'password': {
+        return <ModalEditPassword {...props} />;
+      }
+      case 'country': {
+        return <ModalEditCountry {...props} />;
+      }
+      case 'fiat': {
+        return <ModalEditFiat {...props} />;
+      }
+      case 'localBitcoins': {
+        return <ModalEditLocalBitcoins {...props} />;
+      }
+    }
   };
 
   render() {
@@ -34,10 +71,8 @@ export default class InputTextButton extends React.Component {
       textContentType,
       autoCapitalize,
       secureTextEntry,
-      forgetPassword,
       keyboardType,
       returnKeyType,
-      onChangeText,
       onSubmitEditing,
     } = this.props;
 
@@ -50,6 +85,7 @@ export default class InputTextButton extends React.Component {
           multiline={multiline}
           placeholder={title}
           placeholderTextColor="#898989"
+          editable={false}
           secureTextEntry={secureTextEntry}
           autoCapitalize={autoCapitalize || 'none'}
           textContentType={textContentType || 'none'}
@@ -59,17 +95,17 @@ export default class InputTextButton extends React.Component {
           }
           autoCorrect={false}
           underlineColorAndroid="transparent"
-          clearButtonMode={forgetPassword ? 'never' : 'always'}
           keyboardType={keyboardType ? keyboardType : 'default'}
           returnKeyType={returnKeyType ? returnKeyType : 'done'}
-          onChangeText={onChangeText}
           onSubmitEditing={onSubmitEditing}
         />
         <ButtonColor
           styleText={base.text1}
           style={base.wrap2}
           title="Изменить"
+          onPress={this.onPress}
         />
+        {this.renderModal()}
       </View>
     );
   }

@@ -48,6 +48,10 @@ export const base = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 0.7,
   },
+  wrap3: {
+    borderColor: 'red',
+    borderWidth: 1,
+  },
 });
 
 export default {base};

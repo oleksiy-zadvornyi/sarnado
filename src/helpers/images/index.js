@@ -1,6 +1,6 @@
 export const logo = require('./direction/logo.png');
 export const cabinet = require('./direction/cabinet.png');
-export const pay = require('./direction/pay.png');
+export const buy = require('./direction/buy.png');
 export const replenish = require('./direction/replenish.png');
 export const sell = require('./direction/sell.png');
 export const withdraw = require('./direction/withdraw.png');
@@ -29,6 +29,7 @@ export const currency = require('./direction/currency.png');
 export const login = require('./direction/login.png');
 export const change = require('./direction/change.png');
 export const referral = require('./direction/referral.png');
+export const cross = require('./direction/cross.png');
 
 export const btc = require('./direction/btc.png');
 export const eth = require('./direction/eth.png');
@@ -40,4 +41,6 @@ export const iconBtc = require('./direction/icon_btc.png');
 export const iconEth = require('./direction/icon_eth.png');
 export const iconXrp = require('./direction/icon_xrp.png');
 export const iconUsdt = require('./direction/icon_usdt.png');
+export const iconIsa = require('./direction/icon_isa.png');
+
 export const iconUser = require('./direction/icon_user.png');
