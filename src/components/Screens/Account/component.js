@@ -47,11 +47,11 @@ export default class Account extends React.Component {
         <ButtonNext title="История выводов" screen="HistoryWithdrawal" />
 
         <WrapIconLabel icon={Images.transactions} title="Сделки" />
-        <ButtonNext title="Активные сделки" />
-        <ButtonNext title="Закрытые сделки" />
+        <ButtonNext title="Активные сделки" screen="ActiveDeals" replace />
+        <ButtonNext title="Закрытые сделки" screen="ClosedDeals" replace />
 
         <WrapIconLabel icon={Images.order} title="Ордера" />
-        <ButtonNext title="Активные ордера" />
+        <ButtonNext title="Активные ордера" screen="ActiveOrders" replace />
 
         <View style={base.flex} />
 

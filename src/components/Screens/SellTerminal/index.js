@@ -7,7 +7,7 @@ import {fetchPostOrders} from '../../../store/actions/orders';
 function mapStateToProps(state) {
   return {
     user: state.user,
-    orders: state.orders.buy,
+    orders: state.orders.sell,
   };
 }
 

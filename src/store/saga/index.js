@@ -24,6 +24,10 @@ function* dataSaga() {
     'fetchPatchSettingsLocalBtcAccount',
     User.fetchPatchSettingsLocalBtcAccount,
   );
+  yield takeLatest(
+    'fetchPatchSettingsPublicOrdersVisibility',
+    User.fetchPatchSettingsPublicOrdersVisibility,
+  );
 
   yield takeLatest('fetchGetPurseGetAll', Purse.fetchGetPurseGetAll);
 

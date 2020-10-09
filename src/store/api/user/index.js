@@ -6,6 +6,13 @@ export function getUser(body) {
   return axios.get(`${URL}/api/user`, axiosConfigToken(body.user.token));
 }
 
+export function getSettingsReferralsGet(body) {
+  return axios.get(
+    `${URL}/api/settings/referrals/get`,
+    axiosConfigToken(body.user.token),
+  );
+}
+
 export function postLogin(body) {
   return axios.post(`${URL}/api/login`, body.data, axiosConfig);
 }
@@ -58,6 +65,14 @@ export function patchSettingsLocalBtcAccount(body) {
   return axios.patch(
     `${URL}/api/settings/local_btc_account`,
     body.data,
+    axiosConfigToken(body.user.token),
+  );
+}
+
+export function patchSettingsPublicOrdersVisibility(body) {
+  return axios.patch(
+    `${URL}/api/settings/public_orders_visibility`,
+    null,
     axiosConfigToken(body.user.token),
   );
 }

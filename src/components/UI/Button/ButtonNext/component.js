@@ -8,12 +8,15 @@ import * as Images from '../.././../../helpers/images';
 
 // Style
 import {base} from './styles';
-import {navigate} from '../../../../helpers/navigation';
+import {navigate, replace} from '../../../../helpers/navigation';
 
 export default class ButtonNext extends React.Component {
   onPress = () => {
     const {screen} = this.props;
     if (screen) {
+      if (this.props.replace) {
+        replace(screen);
+      }
       navigate(screen);
     }
   };

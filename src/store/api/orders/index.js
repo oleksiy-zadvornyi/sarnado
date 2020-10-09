@@ -2,14 +2,6 @@ import axios from 'axios';
 
 import {axiosConfigToken, getParams, URL} from '../index';
 
-export function postOrderCheckCheckType(body) {
-  return axios.post(
-    `${URL}/api/order/check/${body.checkedType}`,
-    body.data,
-    axiosConfigToken(body.user.token),
-  );
-}
-
 export function getOrderGetFiats(body) {
   return axios.get(
     `${URL}/api/order/get_fiats${getParams(body.path)}`,
@@ -20,6 +12,21 @@ export function getOrderGetFiats(body) {
 export function getOrderFindId(body) {
   return axios.get(
     `${URL}/api/order/find/${body.id}`,
+    axiosConfigToken(body.user.token),
+  );
+}
+
+export function getOrdersGetActive(body) {
+  return axios.get(
+    `${URL}/api/orders/get/active${getParams(body.path)}`,
+    axiosConfigToken(body.user.token),
+  );
+}
+
+export function postOrderCheckCheckType(body) {
+  return axios.post(
+    `${URL}/api/order/check/${body.checkedType}`,
+    body.data,
     axiosConfigToken(body.user.token),
   );
 }
@@ -44,6 +51,14 @@ export function postOrders(body) {
   return axios.post(
     `${URL}/api/orders`,
     body.data,
+    axiosConfigToken(body.user.token),
+  );
+}
+
+export function patchOrderCancelId(body) {
+  return axios.patch(
+    `${URL}/api/order/cancel/${body.path.id}`,
+    null,
     axiosConfigToken(body.user.token),
   );
 }

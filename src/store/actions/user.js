@@ -54,6 +54,13 @@ export function fetchPatchSettingsLocalBtcAccount(data) {
   };
 }
 
+export function fetchPatchSettingsPublicOrdersVisibility(data) {
+  return {
+    type: 'fetchPatchSettingsPublicOrdersVisibility',
+    data,
+  };
+}
+
 export function reducePostLogout() {
   return {
     type: 'postLogout',

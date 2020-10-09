@@ -6,7 +6,8 @@ export default function initReducer(state = initialState, action) {
       return initialState;
     }
     case 'getUser':
-    case 'patchSettingsGeoUpdate': {
+    case 'patchSettingsGeoUpdate':
+    case 'patchSettingsPublicOrdersVisibility': {
       return action.data;
     }
     case 'postSettingsPhoneStore': {

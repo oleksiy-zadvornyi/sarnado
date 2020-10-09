@@ -11,6 +11,7 @@ import InputButtonsText from '../../UI/Input/InputButtonsText';
 
 // Helpers
 import {_fetchError} from '../../../helpers';
+import {replace} from '../../../helpers/navigation';
 
 // Api
 import {postDealStore} from '../../../store/api/deal';
@@ -105,7 +106,7 @@ export default class OpenDealSell extends React.Component {
     };
     showNetworkIndicator(true);
     postDealStore({user, data})
-      .then((result) => console.log(result))
+      .then((result) => replace('Chat', {id: result.data.data.id}))
       .catch((e) => _fetchError(this.props, e, 'postDealStore'))
       .finally(() => showNetworkIndicator(false));
   };

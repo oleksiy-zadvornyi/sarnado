@@ -16,7 +16,7 @@ import {base} from './styles';
 
 export default class ItemBuyTerminal extends React.Component {
   onPress = () => {
-    navigate('OpenDealSell', {prevProps: this.props});
+    navigate('OpenDealBuy', {prevProps: this.props});
   };
 
   renderVerify = () => {
@@ -83,7 +83,7 @@ export default class ItemBuyTerminal extends React.Component {
           />
         </View>
         <ButtonColor
-          title="Продать"
+          title="Купить"
           style={base.button1}
           styleText={base.buttonText1}
           onPress={this.onPress}

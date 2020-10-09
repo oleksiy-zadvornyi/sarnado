@@ -4,3 +4,10 @@ export function fetchPostOrders(data) {
     data,
   };
 }
+
+export function fetchPatchOrderCancelId(data) {
+  return {
+    type: 'fetchPatchOrderCancelId',
+    data,
+  };
+}

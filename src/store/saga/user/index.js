@@ -83,6 +83,22 @@ export function* fetchPatchSettingsLocalBtcAccount(action) {
   }
 }
 
+export function* fetchPatchSettingsPublicOrdersVisibility(action) {
+  try {
+    yield put({type: 'networkIndicator', data: true});
+    const profile = yield Api.patchSettingsPublicOrdersVisibility(action.data);
+    console.log('patchSettingsPublicOrdersVisibility -> ', profile);
+    yield put({
+      type: 'patchSettingsPublicOrdersVisibility',
+      data: profile.data,
+    });
+  } catch (error) {
+    yield* _catch(error, 'patchSettingsPublicOrdersVisibility');
+  } finally {
+    yield put({type: 'networkIndicator', data: false});
+  }
+}
+
 export function* fetchPostLogout(action) {
   try {
     yield put({type: 'networkIndicator', data: true});

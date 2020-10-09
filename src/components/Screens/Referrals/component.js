@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Clipboard} from 'react-native';
 import Image from 'react-native-scalable-image';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
@@ -11,28 +11,26 @@ import ButtonColor from '../../UI/Button/ButtonColor';
 
 // Helpers
 import * as Images from '../../../helpers/images';
-import {navigate} from '../../../helpers/navigation';
+import {replace} from '../../../helpers/navigation';
+
+// Api
+import {URL} from '../../../store/api';
 
 // Style
 import {base} from './styles';
 
 export default class Referrals extends React.Component {
-  constructor(props) {
-    super(props);
+  onPressReferralsCheck = () => replace('ReferralsCheck');
 
-    this.state = {
-      referral: '',
-    };
-  }
-
-  onChangeReferral = (referral) => this.setState({referral});
-  onPressReferralsCheck = () => navigate('ReferralsCheck');
-
-  done = () => {};
+  onPressClipboard = async () => {
+    const {showToast} = this.props;
+    const {id} = this.props.profile;
+    await Clipboard.setString(`${URL}/register?ref=${id}`);
+    showToast('Реферальная ссылка скопирована');
+  };
 
   render() {
-    const {referral} = this.state;
-
+    const {id} = this.props.profile;
     return (
       <Wrap titleView={<WrapBack title="Реферальная программа" />}>
         <Image style={base.wrap1} source={Images.referral} width={wp(17.5)} />
@@ -48,17 +46,16 @@ export default class Referrals extends React.Component {
         <InputText
           style={base.input1}
           title=""
-          editable
+          editable={false}
           returnKeyType="done"
-          value={referral}
-          onChangeText={this.onChangeReferral}
-          onSubmitEditing={this.done}
+          value={`${URL}/register?ref=${id}`}
         />
 
         <ButtonColor
           styleTouchable={base.wrap1}
           style={base.wrap2}
           title="Скопировать ссылку"
+          onPress={this.onPressClipboard}
         />
 
         <Text style={[base.text1, base.text3]}>

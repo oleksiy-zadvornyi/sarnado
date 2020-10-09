@@ -18,6 +18,10 @@ import ReferralsCheck from '../../components/Screens/ReferralsCheck';
 import Notification from '../../components/Screens/Notification';
 import HistoryDeposit from '../../components/Screens/HistoryDeposit';
 import HistoryWithdrawal from '../../components/Screens/HistoryWithdrawal';
+import Chat from '../../components/Screens/Chat';
+import ActiveDeals from '../../components/Screens/ActiveDeals';
+import ClosedDeals from '../../components/Screens/ClosedDeals';
+import ActiveOrders from '../../components/Screens/ActiveOrders';
 
 import Step1 from '../../components/Screens/Step/Step1';
 import Step2 from '../../components/Screens/Step/Step2';
@@ -86,17 +90,33 @@ export default class TabNavigation extends React.Component {
           component={HistoryWithdrawal}
           options={options}
         />
+        <Stack.Screen
+          name="Referrals"
+          component={Referrals}
+          options={options}
+        />
+        <Stack.Screen
+          name="ActiveDeals"
+          component={ActiveDeals}
+          options={options}
+        />
+        <Stack.Screen
+          name="ClosedDeals"
+          component={ClosedDeals}
+          options={options}
+        />
+        <Stack.Screen
+          name="ActiveOrders"
+          component={ActiveOrders}
+          options={options}
+        />
 
         <Stack.Screen name="Wallets" component={Wallets} options={options} />
         <Stack.Screen name="Deposit" component={Deposit} options={options} />
         <Stack.Screen name="Account" component={Account} options={options} />
         <Stack.Screen name="Profile" component={Profile} options={options} />
         <Stack.Screen name="Password" component={Password} options={options} />
-        <Stack.Screen
-          name="Referrals"
-          component={Referrals}
-          options={options}
-        />
+        <Stack.Screen name="Chat" component={Chat} options={options} />
 
         <Stack.Screen name="Step1" component={Step1} options={options} />
         <Stack.Screen name="Step2" component={Step2} options={options} />

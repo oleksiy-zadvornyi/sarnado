@@ -15,6 +15,7 @@ export default class Sorts extends React.Component {
       indexCountry: -1,
       indexDirection: -1,
       indexCrypto: -1,
+      indexFiat: -1,
     };
   }
 
@@ -24,6 +25,7 @@ export default class Sorts extends React.Component {
     this.setState({indexDirection}, this.onChange);
   onSelectCrypto = (e, indexCrypto) =>
     this.setState({indexCrypto}, this.onChange);
+  onSelectFiat = (e, indexFiat) => this.setState({indexFiat}, this.onChange);
 
   onChange = () => {
     const {onChange} = this.props;
@@ -31,30 +33,43 @@ export default class Sorts extends React.Component {
   };
 
   render() {
-    const {crypto, directions, countries} = this.props;
-    const {indexCountry, indexDirection, indexCrypto} = this.state;
+    const {crypto, directions, countries, fiat} = this.props;
+    const {indexCountry, indexDirection, indexCrypto, indexFiat} = this.state;
 
     return (
       <View style={base.wrap1}>
-        <PickerSmall
-          title={indexCountry >= 0 ? countries[indexCountry].name : 'Страна'}
-          data={countries.map((e) => e.name)}
-          onSelect={this.onSelectCountry}
-        />
-        <PickerSmall
-          title={
-            indexDirection >= 0
-              ? directions[indexDirection].name
-              : 'Направления сделки'
-          }
-          data={directions.map((e) => e.name)}
-          onSelect={this.onSelectDirection}
-        />
-        <PickerSmall
-          title={indexCrypto >= 0 ? crypto[indexCrypto].name : 'Валюта'}
-          data={crypto.map((e) => e.name)}
-          onSelect={this.onSelectCrypto}
-        />
+        {countries && (
+          <PickerSmall
+            title={indexCountry >= 0 ? countries[indexCountry].name : 'Страна'}
+            data={countries.map((e) => e.name)}
+            onSelect={this.onSelectCountry}
+          />
+        )}
+        {crypto && (
+          <PickerSmall
+            title={indexCrypto >= 0 ? crypto[indexCrypto].name : 'Криптовалюта'}
+            data={crypto.map((e) => e.name)}
+            onSelect={this.onSelectCrypto}
+          />
+        )}
+        {fiat && (
+          <PickerSmall
+            title={indexFiat >= 0 ? fiat[indexFiat].name : 'Фиатна'}
+            data={fiat.map((e) => e.name)}
+            onSelect={this.onSelectFiat}
+          />
+        )}
+        {directions && (
+          <PickerSmall
+            title={
+              indexDirection >= 0
+                ? directions[indexDirection].name
+                : 'Направление'
+            }
+            data={directions.map((e) => e.name)}
+            onSelect={this.onSelectDirection}
+          />
+        )}
       </View>
     );
   }

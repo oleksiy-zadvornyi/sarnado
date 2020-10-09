@@ -33,6 +33,7 @@ export default class SellTerminal extends React.Component {
     const {user, fetchPostOrders, showNetworkIndicator} = this.props;
     const data = {
       type: 'sell',
+      show_auth_user_orders: false,
     };
     fetchPostOrders({user, data});
     showNetworkIndicator(true);
@@ -43,7 +44,7 @@ export default class SellTerminal extends React.Component {
   }
 
   onPress = () => {
-    replace('Step1', {prevProps: {orderType: 'sell'}});
+    replace('Step1', {prevProps: {orderType: 'buy'}});
   };
 
   onChangeSorts = (sorts) => {
@@ -89,7 +90,7 @@ export default class SellTerminal extends React.Component {
         />
         <ButtonColor
           style={base.button1}
-          title="Выставить ордер на продажу"
+          title="Выставить ордер на покупку"
           onPress={this.onPress}
         />
       </Wrap>

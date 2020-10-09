@@ -6,7 +6,7 @@ export const base = StyleSheet.create({
     flex: 1,
   },
   button1: {
-    backgroundColor: '#9A2220',
+    backgroundColor: '#008316',
     marginVertical: wp(4),
   },
   wrap1: {

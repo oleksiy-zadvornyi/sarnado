@@ -50,12 +50,12 @@ export default class ChooseTheRide extends React.Component {
           style={base.button1}
           styleTouchable={base.margin1}
           title="Быстро купить криптовалюту"
-          onPress={this.onPressStepBuy}
+          onPress={this.onPressBuyTerminal}
         />
         <ButtonColor
           style={base.button2}
           title="Быстро продать криптовалюту"
-          onPress={this.onPressStepSell}
+          onPress={this.onPressSellTerminal}
         />
         <View style={base.flex} />
         <Text style={[base.text1, base.margin2]}>
@@ -66,12 +66,12 @@ export default class ChooseTheRide extends React.Component {
           style={base.button2}
           styleTouchable={base.margin1}
           title="Выставить ордер на продажу"
-          onPress={this.onPressSellTerminal}
+          onPress={this.onPressStepSell}
         />
         <ButtonColor
           style={base.button1}
           title="Выставить ордер на покупку"
-          onPress={this.onPressBuyTerminal}
+          onPress={this.onPressStepBuy}
         />
         <View style={base.flex} />
       </Wrap>

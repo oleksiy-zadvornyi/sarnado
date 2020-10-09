@@ -33,6 +33,7 @@ export default class BuyTerminal extends React.Component {
     const {user, fetchPostOrders, showNetworkIndicator} = this.props;
     const data = {
       type: 'buy',
+      show_auth_user_orders: false,
     };
     fetchPostOrders({user, data});
     showNetworkIndicator(true);
@@ -43,7 +44,7 @@ export default class BuyTerminal extends React.Component {
   }
 
   onPress = () => {
-    replace('Step1', {prevProps: {orderType: 'buy'}});
+    replace('Step1', {prevProps: {orderType: 'sell'}});
   };
 
   onChangeSorts = (sorts) => {
@@ -89,7 +90,7 @@ export default class BuyTerminal extends React.Component {
         />
         <ButtonColor
           style={base.button1}
-          title="Выставить ордер на покупку"
+          title="Выставить ордер на продажу"
           onPress={this.onPress}
         />
       </Wrap>

@@ -9,7 +9,7 @@ export const base = StyleSheet.create({
   button1: {
     width: wp(100) - 60,
     height: 31,
-    backgroundColor: '#9A2220',
+    backgroundColor: '#008316',
     marginBottom: wp(2),
     borderColor: 'white',
     borderWidth: 0.7,

@@ -30,6 +30,8 @@ export const login = require('./direction/login.png');
 export const change = require('./direction/change.png');
 export const referral = require('./direction/referral.png');
 export const cross = require('./direction/cross.png');
+export const x = require('./direction/x.png');
+export const symbol = require('./direction/symbol.png');
 
 export const btc = require('./direction/btc.png');
 export const eth = require('./direction/eth.png');
