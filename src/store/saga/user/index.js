@@ -1,7 +1,8 @@
 import {put} from 'redux-saga/effects';
 
 import * as Api from '../../api/user';
-import {_catch} from '../../../helpers';
+import * as ApiMobileDevice from '../../api/mobileDevice';
+import {_catch, registerForPushNotificationsAsync} from '../../../helpers';
 
 export function* fetchPostLogin(action) {
   try {
@@ -10,6 +11,16 @@ export function* fetchPostLogin(action) {
     console.log('postLogin -> ', user);
     const profile = yield Api.getUser({user: user.data});
     console.log('getUser -> ', profile);
+
+    const expoPushToken = yield registerForPushNotificationsAsync(
+      action.data.email,
+    );
+    const asd = yield ApiMobileDevice.postSettingsMobileDevicesExpoTokenCreate({
+      user: user.data,
+      data: {expo_token: expoPushToken.data},
+    });
+    console.log(asd);
+
     yield put({type: 'postLogin', data: user.data});
     yield put({type: 'getUser', data: profile.data});
   } catch (error) {
@@ -102,8 +113,16 @@ export function* fetchPatchSettingsPublicOrdersVisibility(action) {
 export function* fetchPostLogout(action) {
   try {
     yield put({type: 'networkIndicator', data: true});
+
+    const expoPushToken = yield registerForPushNotificationsAsync(action.email);
+    yield ApiMobileDevice.postSettingsMobileDevicesExpoTokenDelete({
+      user: action.data.user,
+      data: {expo_token: expoPushToken.data},
+    });
+
     const user = yield Api.postLogout(action.data);
     console.log('postLogout -> ', user);
+
     yield put({type: 'postLogout'});
   } catch (error) {
     yield* _catch(error, 'postLogout');

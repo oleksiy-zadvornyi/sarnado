@@ -5,10 +5,11 @@ export function fetchPostLogin(data) {
   };
 }
 
-export function fetchPostLogout(data) {
+export function fetchPostLogout(data, email) {
   return {
     type: 'fetchPostLogout',
     data,
+    email,
   };
 }
 

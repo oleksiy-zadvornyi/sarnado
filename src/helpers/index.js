@@ -1,3 +1,5 @@
+import Constants from 'expo-constants';
+import * as Notifications from 'expo-notifications';
 import {put, all} from 'redux-saga/effects';
 import {workTime} from './constants';
 
@@ -21,6 +23,7 @@ export function* _catch(error, title) {
       }
     }
   } else {
+    console.log(`${title} ->`, error);
     yield put({type: 'toast', data: error.message});
   }
 }
@@ -48,6 +51,7 @@ export function _fetchError(props, error, title) {
       }
     }
   } else {
+    console.log(`${title} ->`, error);
     showToast(error.message);
   }
 }
@@ -77,4 +81,15 @@ export function getTill(indexes) {
   }
   const max = Math.max(...indexes);
   return workTime.filter((e) => e.id === max)[0];
+}
+
+export async function registerForPushNotificationsAsync(userId) {
+  let experienceId;
+  if (!Constants.manifest) {
+    experienceId = userId;
+  }
+  const expoPushToken = await Notifications.getExpoPushTokenAsync({
+    experienceId,
+  });
+  return expoPushToken;
 }

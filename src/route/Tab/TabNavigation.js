@@ -22,6 +22,7 @@ import Chat from '../../components/Screens/Chat';
 import ActiveDeals from '../../components/Screens/ActiveDeals';
 import ClosedDeals from '../../components/Screens/ClosedDeals';
 import ActiveOrders from '../../components/Screens/ActiveOrders';
+import FeedbackTransaction from '../../components/Screens/FeedbackTransaction';
 
 import Step1 from '../../components/Screens/Step/Step1';
 import Step2 from '../../components/Screens/Step/Step2';
@@ -108,6 +109,11 @@ export default class TabNavigation extends React.Component {
         <Stack.Screen
           name="ActiveOrders"
           component={ActiveOrders}
+          options={options}
+        />
+        <Stack.Screen
+          name="FeedbackTransaction"
+          component={FeedbackTransaction}
           options={options}
         />
 

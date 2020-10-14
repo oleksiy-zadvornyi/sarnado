@@ -22,9 +22,9 @@ export default class Account extends React.Component {
   }
 
   onPressLogout = () => {
-    const {user, fetchPostLogout} = this.props;
+    const {user, profile, fetchPostLogout} = this.props;
 
-    fetchPostLogout({user});
+    fetchPostLogout({user}, profile.email);
   };
 
   render() {
@@ -37,7 +37,7 @@ export default class Account extends React.Component {
         <WrapIconLabel icon={Images.user} title="Пользователь" />
         <ButtonNext title="Профиль пользователя" screen="Profile" />
         <ButtonNext title="Пароль" screen="Password" />
-        <ButtonNext title="Google 2GA" />
+        <ButtonNext title="Google 2GA" screen="FeedbackTransaction" />
         <ButtonNext title="Реферальная программа" screen="Referrals" />
         <ButtonNext title="Оповещения" screen="Notification" />
 
