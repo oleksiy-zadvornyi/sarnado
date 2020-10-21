@@ -1,13 +1,19 @@
 import React from 'react';
 import {View, Text, TextInput} from 'react-native';
 import Image from 'react-native-scalable-image';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 // Components
 import Wrap from '../../UI/Base/Wrap';
 import WrapBack from '../../UI/Wrap/WrapBack';
+import ButtonColor from '../../UI/Button/ButtonColor';
 
 // Helpers
 import * as Images from '../../../helpers/images';
+import {_fetchError} from '../../../helpers';
+
+// Api
+import {postReviewsStore} from '../../../store/api/deal';
 
 // Style
 import {base} from './styles';
@@ -18,13 +24,38 @@ export default class FeedbackTransaction extends React.Component {
 
     this.state = {
       feedback: '',
+      thumbIndex: -1,
     };
   }
 
-  onChangeFeedback = (feedback) => {};
+  onChangeFeedback = (feedback) => this.setState({feedback});
+
+  onPressThumbUp = () => this.setState({thumbIndex: 0});
+  onPressThumbDown = () => this.setState({thumbIndex: 1});
+
+  done = () => {
+    const {feedback, thumbIndex} = this.state;
+    const {user, showToast, showNetworkIndicator} = this.props;
+    if (thumbIndex === -1) {
+      showToast('Поставте лайк или дизлайк');
+      return;
+    }
+    if (feedback.length === 0) {
+      showToast('Оставьте свой комментарий');
+      return;
+    }
+    const path = {
+      is_liked: !!thumbIndex,
+      text: feedback,
+    };
+    showNetworkIndicator(true);
+    postReviewsStore({path, user})
+      .catch((e) => _fetchError(this.props, e, 'postReviewsStore'))
+      .finally(() => showNetworkIndicator(false));
+  };
 
   render() {
-    const {feedback} = this.state;
+    const {feedback, thumbIndex} = this.state;
     return (
       <Wrap titleView={<WrapBack title="Отзыв о сделке" />}>
         <View style={base.wrap1}>
@@ -32,12 +63,35 @@ export default class FeedbackTransaction extends React.Component {
           <TextInput
             style={base.text2}
             value={feedback}
-            placeholder="asd"
             placeholderTextColor="#5A5A5A"
             multiline
             onChangeText={this.onChangeFeedback}
           />
+          <Text style={base.text1}>Ваша оценка сделки</Text>
+          <View style={base.wrap2}>
+            <Image
+              style={base.wrap3}
+              source={thumbIndex === 0 ? Images.thumbUpFill : Images.thumbUp}
+              width={wp(20)}
+              onPress={this.onPressThumbUp}
+            />
+            <Image
+              style={base.wrap4}
+              source={
+                thumbIndex === 1 ? Images.thumbDownFill : Images.thumbDown
+              }
+              width={wp(20)}
+              onPress={this.onPressThumbDown}
+            />
+          </View>
         </View>
+        <View style={base.flex} />
+        <ButtonColor
+          styleTouchable={base.margin1}
+          style={base.button1}
+          title="Оставить отзыв"
+          onPress={this.done}
+        />
       </Wrap>
     );
   }

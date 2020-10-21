@@ -32,6 +32,10 @@ export const referral = require('./direction/referral.png');
 export const cross = require('./direction/cross.png');
 export const x = require('./direction/x.png');
 export const symbol = require('./direction/symbol.png');
+export const thumbDown = require('./direction/thumb-down.png');
+export const thumbDownFill = require('./direction/thumb-down-fill.png');
+export const thumbUp = require('./direction/thumb-up.png');
+export const thumbUpFill = require('./direction/thumb-up-fill.png');
 
 export const btc = require('./direction/btc.png');
 export const eth = require('./direction/eth.png');

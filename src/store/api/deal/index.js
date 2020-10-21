@@ -30,3 +30,11 @@ export function postDealStore(body) {
     axiosConfigToken(body.user.token),
   );
 }
+
+export function postReviewsStore(body) {
+  return axios.post(
+    `${URL}/api/reviews/store`,
+    body.data,
+    axiosConfigToken(body.user.token),
+  );
+}

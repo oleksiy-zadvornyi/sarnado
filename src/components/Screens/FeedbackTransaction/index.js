@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import component from './component';
 
-import {fetchPostLogout} from '../../../store/actions/user';
+import {showNetworkIndicator, showToast} from '../../../store/actions';
 
 function mapStateToProps(state) {
   return {
@@ -11,7 +11,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchPostLogout: (data) => dispatch(fetchPostLogout(data)),
+    showNetworkIndicator: (data) => dispatch(showNetworkIndicator(data)),
+    showToast: (data) => dispatch(showToast(data)),
   };
 }
 

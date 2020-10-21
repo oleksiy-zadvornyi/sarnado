@@ -5,8 +5,21 @@ export const base = StyleSheet.create({
   flex: {
     flex: 1,
   },
-  input1: {
-    marginBottom: wp(6),
+  wrap1: {
+    paddingVertical: wp(2),
+    width: wp(90),
+  },
+  wrap2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    marginTop: wp(10),
+  },
+  wrap3: {
+    tintColor: '#008316',
+  },
+  wrap4: {
+    tintColor: '#9A2220',
   },
   text1: {
     fontFamily: 'Roboto',
@@ -19,6 +32,7 @@ export const base = StyleSheet.create({
   },
   text2: {
     minHeight: wp(28),
+    textAlignVertical: 'top',
     fontFamily: 'Roboto',
     fontSize: wp(3),
     lineHeight: wp(3.5),
@@ -27,12 +41,13 @@ export const base = StyleSheet.create({
     padding: wp(2.5),
     borderRadius: wp(1),
   },
+  margin1: {
+    marginTop: wp(6),
+    marginBottom: wp(4),
+  },
   button1: {
     backgroundColor: '#008316',
-  },
-  button2: {
-    backgroundColor: '#B9BC0D',
-    marginBottom: wp(5),
+    borderColor: 'black',
   },
 });
 
