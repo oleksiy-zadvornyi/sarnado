@@ -84,7 +84,7 @@ export default class ItemActiveDeals extends React.Component {
           />
         </View>
         <ButtonColor
-          title="Отменить"
+          title="Перейти"
           style={type === 'sell' ? base.button1 : base.button2}
           styleText={base.buttonText1}
           onPress={this.onPress}

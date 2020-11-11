@@ -114,15 +114,17 @@ export default class OrderPay extends React.Component {
     const {message} = this.state;
     return (
       <View style={base.flex}>
-        <OrderChatInput
-          editable={!credentials.msg && isCrypto}
-          style={base.wrap2}
-          title={`Покупатель оплатил сумму покупки!${'\n'}Как только средства поступят на ваш счет, подтвердите получение средств!`}
-          returnKeyType="done"
-          value={credentials.msg || message}
-          multiline
-          onChangeText={this.onChangeMessage}
-        />
+        {credentials && (
+          <OrderChatInput
+            editable={!credentials.msg && isCrypto}
+            style={base.wrap2}
+            title={`Покупатель оплатил сумму покупки!${'\n'}Как только средства поступят на ваш счет, подтвердите получение средств!`}
+            returnKeyType="done"
+            value={credentials.msg || message}
+            multiline
+            onChangeText={this.onChangeMessage}
+          />
+        )}
         {this.renderButton()}
       </View>
     );

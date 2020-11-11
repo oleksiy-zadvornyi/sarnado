@@ -27,6 +27,7 @@ export const base = StyleSheet.create({
     fontSize: wp(4),
     lineHeight: wp(4.5),
     color: 'white',
+    textAlign: 'center',
   },
 });
 

@@ -99,7 +99,15 @@ export default class Chat extends React.Component {
     });
     channel.bind('service_msg.deal.completed', (data) => {
       console.log('service_msg.deal.completed', data);
-      navigate('Account');
+      navigate('FeedbackTransaction', {id});
+    });
+    channel.bind('service_msg.deal.expired', (data) => {
+      console.log('service_msg.deal.expired', data);
+      navigate('FeedbackTransaction', {id});
+    });
+    channel.bind('service_msg.deal.canceled', (data) => {
+      console.log('service_msg.deal.canceled', data);
+      navigate('FeedbackTransaction', {id});
     });
   }
 

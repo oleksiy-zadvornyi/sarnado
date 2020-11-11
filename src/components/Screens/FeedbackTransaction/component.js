@@ -11,6 +11,7 @@ import ButtonColor from '../../UI/Button/ButtonColor';
 // Helpers
 import * as Images from '../../../helpers/images';
 import {_fetchError} from '../../../helpers';
+import {replace} from '../../../helpers/navigation';
 
 // Api
 import {postReviewsStore} from '../../../store/api/deal';
@@ -22,7 +23,9 @@ export default class FeedbackTransaction extends React.Component {
   constructor(props) {
     super(props);
 
+    const id = props.route.params?.id ?? 0;
     this.state = {
+      id,
       feedback: '',
       thumbIndex: -1,
     };
@@ -34,7 +37,7 @@ export default class FeedbackTransaction extends React.Component {
   onPressThumbDown = () => this.setState({thumbIndex: 1});
 
   done = () => {
-    const {feedback, thumbIndex} = this.state;
+    const {id, feedback, thumbIndex} = this.state;
     const {user, showToast, showNetworkIndicator} = this.props;
     if (thumbIndex === -1) {
       showToast('Поставте лайк или дизлайк');
@@ -45,11 +48,14 @@ export default class FeedbackTransaction extends React.Component {
       return;
     }
     const path = {
-      is_liked: !!thumbIndex,
+      id,
+      is_liked: thumbIndex === 0 ? false : true,
       text: feedback,
     };
+    console.log(path);
     showNetworkIndicator(true);
     postReviewsStore({path, user})
+      .then(() => replace('ChooseTheRide'))
       .catch((e) => _fetchError(this.props, e, 'postReviewsStore'))
       .finally(() => showNetworkIndicator(false));
   };
@@ -65,6 +71,7 @@ export default class FeedbackTransaction extends React.Component {
             value={feedback}
             placeholderTextColor="#5A5A5A"
             multiline
+            maxLength={250}
             onChangeText={this.onChangeFeedback}
           />
           <Text style={base.text1}>Ваша оценка сделки</Text>
