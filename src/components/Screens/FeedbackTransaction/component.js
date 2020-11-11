@@ -47,14 +47,14 @@ export default class FeedbackTransaction extends React.Component {
       showToast('Оставьте свой комментарий');
       return;
     }
-    const path = {
+    const data = {
       id,
       is_liked: thumbIndex === 0 ? false : true,
       text: feedback,
     };
-    console.log(path);
+
     showNetworkIndicator(true);
-    postReviewsStore({path, user})
+    postReviewsStore({data, user})
       .then(() => replace('ChooseTheRide'))
       .catch((e) => _fetchError(this.props, e, 'postReviewsStore'))
       .finally(() => showNetworkIndicator(false));
