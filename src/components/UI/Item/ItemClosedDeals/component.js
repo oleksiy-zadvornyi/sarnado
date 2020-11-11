@@ -16,7 +16,7 @@ import {base} from './styles';
 
 export default class ItemClosedDeals extends React.Component {
   onPress = () => {
-    navigate('Chat', {id: this.props.id});
+    navigate('ClosedDealInfo', {id: this.props.id});
   };
 
   renderVerify = () => {
@@ -84,7 +84,7 @@ export default class ItemClosedDeals extends React.Component {
           />
         </View>
         <ButtonColor
-          title="Перейти"
+          title="Информация"
           style={status === 'completed' ? base.button1 : base.button2}
           styleText={base.buttonText1}
           onPress={this.onPress}

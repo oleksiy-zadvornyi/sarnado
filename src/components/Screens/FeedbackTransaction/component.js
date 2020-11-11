@@ -49,7 +49,7 @@ export default class FeedbackTransaction extends React.Component {
     }
     const data = {
       id,
-      is_liked: thumbIndex === 0 ? false : true,
+      is_liked: !!thumbIndex,
       text: feedback,
     };
 

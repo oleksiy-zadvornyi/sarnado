@@ -23,6 +23,13 @@ export function getDealsGetClosed(body) {
   );
 }
 
+export function getDealsGetCompleted(body) {
+  return axios.get(
+    `${URL}/api/deals/get/completed/${body.path.id}`,
+    axiosConfigToken(body.user.token),
+  );
+}
+
 export function postDealStore(body) {
   return axios.post(
     `${URL}/api/deal/store`,
