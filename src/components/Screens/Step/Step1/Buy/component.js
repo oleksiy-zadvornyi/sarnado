@@ -28,7 +28,6 @@ export default class Buy extends React.Component {
       index: -1,
       crypto: [],
     };
-    console.log(props.profile);
   }
 
   componentDidMount() {

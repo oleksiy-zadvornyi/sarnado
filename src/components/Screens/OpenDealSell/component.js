@@ -113,7 +113,6 @@ export default class OpenDealSell extends React.Component {
 
   render() {
     const {order} = this.state;
-    console.log(order);
     if (order) {
       const {upload, download, message} = this.state;
       const {exchange_rate, user} = order;

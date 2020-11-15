@@ -9,7 +9,7 @@ import {base} from './styles';
 
 export default class OrderChatItem extends React.Component {
   render() {
-    const {msg, user_id, photo_url, type, users} = this.props;
+    const {msg, user_id, type, users} = this.props;
     const user = user_id === users.crypto.id ? users.crypto : users.fiat;
     const {id} = this.props.profile;
     if (type === 'credentials_created') {
@@ -19,6 +19,7 @@ export default class OrderChatItem extends React.Component {
         </View>
       );
     }
+
     if (user_id === id) {
       return (
         <View style={base.wrap2}>
@@ -28,7 +29,7 @@ export default class OrderChatItem extends React.Component {
           </View>
           <Image
             style={base.image1}
-            source={photo_url ? {uri: photo_url} : Images.icon}
+            source={user.photo_url ? {uri: user.photo_url} : Images.icon}
           />
         </View>
       );
@@ -38,7 +39,7 @@ export default class OrderChatItem extends React.Component {
       <View style={base.wrap1}>
         <Image
           style={base.image1}
-          source={photo_url ? {uri: photo_url} : Images.icon}
+          source={user.photo_url ? {uri: user.photo_url} : Images.icon}
         />
         <View style={base.flex}>
           <Text style={base.text1}>{user.name}</Text>

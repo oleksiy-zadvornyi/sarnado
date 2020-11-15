@@ -1,14 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
-import Image from 'react-native-scalable-image';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
-
-// Components
-import ButtonColor from '../../Button/ButtonColor';
-import OrderChatInput from '../../Order/OrderChatInput';
-
-// Helpers
-import * as Images from '../../../../helpers/images';
+import {View, Text} from 'react-native';
 
 // Style
 import {base} from './styles';

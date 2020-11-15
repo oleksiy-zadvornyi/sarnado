@@ -15,3 +15,17 @@ export function getPurseGetAllAmountId(body) {
     axiosConfigToken(body.user.token),
   );
 }
+
+export function getPurseDeposits(body) {
+  return axios.get(
+    `${URL}/api/purse/deposits`,
+    axiosConfigToken(body.user.token),
+  );
+}
+
+export function getPurseWithdrawals(body) {
+  return axios.get(
+    `${URL}/api/purse/withdrawals`,
+    axiosConfigToken(body.user.token),
+  );
+}

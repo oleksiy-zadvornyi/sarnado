@@ -25,9 +25,9 @@ export default class OrderTab extends React.Component {
   render() {
     return (
       <View style={base.wrap1}>
-        {this.renderTab(0, 'Детали сделки')}
-        {this.renderTab(1, 'Платежные данные')}
-        {this.renderTab(2, 'Чат')}
+        {this.renderTab(0, 'Чат')}
+        {this.renderTab(1, 'Детали сделки')}
+        {this.renderTab(2, 'Платежные данные')}
       </View>
     );
   }

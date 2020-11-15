@@ -15,11 +15,10 @@ export function* fetchPostLogin(action) {
     const expoPushToken = yield registerForPushNotificationsAsync(
       action.data.email,
     );
-    const asd = yield ApiMobileDevice.postSettingsMobileDevicesExpoTokenCreate({
+    yield ApiMobileDevice.postSettingsMobileDevicesExpoTokenCreate({
       user: user.data,
       data: {expo_token: expoPushToken.data},
     });
-    console.log(asd);
 
     yield put({type: 'postLogin', data: user.data});
     yield put({type: 'getUser', data: profile.data});

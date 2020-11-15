@@ -1,10 +1,13 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, Linking, View} from 'react-native';
 import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import Image from 'react-native-scalable-image';
 
 // Components
 import ButtonColor from '../../Button/ButtonColor';
+
+// Helpers
+import * as Images from '../../../../helpers/images';
 
 // Style
 import {base} from './styles';
@@ -20,8 +23,39 @@ export default class ItemHistoryDeposit extends React.Component {
 
   onPressTX = () => this.setState({isClick: true});
 
+  onPressTxn = () => {
+    const {txn_id, crypto_code} = this.props;
+    if (crypto_code === 'XRP') {
+      Linking.openURL(`https://xrpscan.com/tx/${txn_id}`);
+    } else {
+      Linking.openURL(`https://tokenview.com/ru/search/${txn_id}`);
+    }
+  };
+
+  getIcon = () => {
+    const {crypto_code} = this.props;
+    switch (crypto_code) {
+      case 'ETH': {
+        return Images.iconEth;
+      }
+      case 'ISA': {
+        return Images.iconIsa;
+      }
+      case 'USDT':
+      case 'USDT.ERC20': {
+        return Images.iconUsdt;
+      }
+      case 'XRP': {
+        return Images.iconXrp;
+      }
+      case 'BTC': {
+        return Images.iconBtc;
+      }
+    }
+  };
+
   render() {
-    const {date, size, profit, currency, icon, tx} = this.props;
+    const {amount, crypto_code, created_at, txn_id} = this.props;
     const {isClick} = this.state;
 
     return (
@@ -29,21 +63,20 @@ export default class ItemHistoryDeposit extends React.Component {
         <View style={base.wrap2}>
           <View>
             <Text style={base.text1}>Объем поступления</Text>
-            <Text style={base.text2}>{`${profit} ${currency}`}</Text>
+            <Text style={base.text2}>{`${amount} ${crypto_code}`}</Text>
           </View>
           <View style={base.flex} />
           <View style={base.wrap3}>
-            <View style={base.wrap4}>
-              <Text style={[base.text1, base.margin1]}>{size}</Text>
-              <Image source={icon} width={wp(9)} />
-            </View>
-            <Text style={[base.text1, base.margin2]}>{date}</Text>
+            <Image source={this.getIcon()} width={wp(9)} />
+            <Text style={[base.text1, base.margin2]}>{created_at}</Text>
           </View>
         </View>
-        {isClick ? (
-          <Text numberOfLines={1} style={base.text4}>
-            {tx}
-          </Text>
+        {txn_id && isClick ? (
+          <TouchableOpacity onPress={this.onPressTxn}>
+            <Text numberOfLines={1} style={base.text4}>
+              {txn_id}
+            </Text>
+          </TouchableOpacity>
         ) : (
           <ButtonColor
             styleText={base.text3}

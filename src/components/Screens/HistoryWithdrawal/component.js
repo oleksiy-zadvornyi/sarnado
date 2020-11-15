@@ -7,16 +7,32 @@ import WrapBack from '../../UI/Wrap/WrapBack';
 import ItemHistoryWithdrawal from '../../UI/Item/ItemHistoryWithdrawal';
 import SortBy from '../../UI/Sort/SortBy';
 
+// Helpers
+import {_fetchError} from '../../../helpers';
+
+// Api
+import {getPurseWithdrawals} from '../../../store/api/purse';
+
 // Style
 import {base} from './styles';
-
-import {DATA} from './staticData';
 
 export default class HistoryWithdrawal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      data: [],
+    };
+  }
+
+  componentDidMount() {
+    const {user, showNetworkIndicator} = this.props;
+
+    showNetworkIndicator(true);
+    getPurseWithdrawals({user})
+      .then((result) => this.setState({data: result.data.result}))
+      .catch((e) => _fetchError(this.props, e, 'getPurseWithdrawals'))
+      .finally(() => showNetworkIndicator(false));
   }
 
   renderItem = ({item, index}) => (
@@ -24,12 +40,13 @@ export default class HistoryWithdrawal extends React.Component {
   );
 
   render() {
+    const {data} = this.state;
     return (
       <Wrap noScroll titleView={<WrapBack title="История выводов" />}>
         <SortBy />
 
         <FlatList
-          data={DATA}
+          data={data}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={base.wrap1}
           extraData={this.props}

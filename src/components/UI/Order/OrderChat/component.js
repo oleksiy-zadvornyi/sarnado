@@ -52,7 +52,7 @@ export default class OrderChat extends React.Component {
     const {message} = this.state;
     const {messages} = this.props;
     return (
-      <>
+      <View style={base.flex}>
         <View style={base.wrap1}>
           <FlatList
             data={messages}
@@ -73,7 +73,7 @@ export default class OrderChat extends React.Component {
           title="Отправить сообщение"
           onPress={this.send}
         />
-      </>
+      </View>
     );
   }
 }

@@ -121,9 +121,9 @@ export default class Chat extends React.Component {
       const {id, credentials, users, messages} = this.state;
       const {amount, countdown, status, type, data} = this.state.deal;
       const {name} = type === 'sell' ? users.crypto : users.fiat;
-      console.log(this.state);
+
       return (
-        <Wrap>
+        <Wrap noScroll>
           <OrderTimer
             title="Время на подтверждение получения"
             countdown={countdown}
@@ -131,8 +131,8 @@ export default class Chat extends React.Component {
           <OrderUser name={name} dispute={status === 'opened_dispute'} />
           <OrderTab tabIndex={tabIndex} onPressTab={this.onPressTab} />
 
-          {tabIndex === 0 && <OrderDescription amount={amount} data={data} />}
-          {tabIndex === 1 && (
+          {tabIndex === 1 && <OrderDescription amount={amount} data={data} />}
+          {tabIndex === 2 && (
             <OrderPay
               id={id}
               credentials={credentials}
@@ -140,7 +140,7 @@ export default class Chat extends React.Component {
               isCrypto={profile.id === users.crypto.id}
             />
           )}
-          {tabIndex === 2 && (
+          {tabIndex === 0 && (
             <OrderChat id={id} messages={messages} users={users} />
           )}
           <Text style={base.text1}>
