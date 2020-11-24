@@ -123,7 +123,7 @@ export default class Chat extends React.Component {
       const {name} = type === 'sell' ? users.crypto : users.fiat;
 
       return (
-        <Wrap noScroll>
+        <Wrap noScroll={tabIndex !== 1}>
           <OrderTimer
             title="Время на подтверждение получения"
             countdown={countdown}

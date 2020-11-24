@@ -57,7 +57,7 @@ export default class ItemHistoryDeposit extends React.Component {
   render() {
     const {amount, crypto_code, created_at, txn_id} = this.props;
     const {isClick} = this.state;
-
+    console.log(txn_id);
     return (
       <View style={base.wrap1}>
         <View style={base.wrap2}>
@@ -71,20 +71,21 @@ export default class ItemHistoryDeposit extends React.Component {
             <Text style={[base.text1, base.margin2]}>{created_at}</Text>
           </View>
         </View>
-        {txn_id && isClick ? (
-          <TouchableOpacity onPress={this.onPressTxn}>
-            <Text numberOfLines={1} style={base.text4}>
-              {txn_id}
-            </Text>
-          </TouchableOpacity>
-        ) : (
-          <ButtonColor
-            styleText={base.text3}
-            style={base.button1}
-            title="показать tx"
-            onPress={this.onPressTX}
-          />
-        )}
+        {txn_id &&
+          (isClick ? (
+            <TouchableOpacity onPress={this.onPressTxn}>
+              <Text numberOfLines={1} style={base.text4}>
+                {txn_id}
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <ButtonColor
+              styleText={base.text3}
+              style={base.button1}
+              title="показать tx"
+              onPress={this.onPressTX}
+            />
+          ))}
       </View>
     );
   }

@@ -73,20 +73,21 @@ export default class ItemHistoryWithdrawal extends React.Component {
             <Text style={[base.text1, base.margin4]}>{created_at}</Text>
           </View>
         </View>
-        {txn_id && isClick ? (
-          <TouchableOpacity onPress={this.onPressTxn}>
-            <Text numberOfLines={1} style={base.text4}>
-              {txn_id}
-            </Text>
-          </TouchableOpacity>
-        ) : (
-          <ButtonColor
-            styleText={base.text3}
-            style={base.button1}
-            title="показать tx"
-            onPress={this.onPressTX}
-          />
-        )}
+        {txn_id &&
+          (isClick ? (
+            <TouchableOpacity onPress={this.onPressTxn}>
+              <Text numberOfLines={1} style={base.text4}>
+                {txn_id}
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <ButtonColor
+              styleText={base.text3}
+              style={base.button1}
+              title="показать tx"
+              onPress={this.onPressTX}
+            />
+          ))}
       </View>
     );
   }

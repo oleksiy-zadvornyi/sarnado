@@ -119,10 +119,10 @@ export default class ActiveOrders extends React.Component {
         <ButtonColor
           title={
             show_public_orders
-              ? 'Показать пользователям'
-              : 'Скрыть от пользователей'
+              ? 'Скрыть от пользователей'
+              : 'Показать пользователям'
           }
-          style={show_public_orders ? base.button1 : base.button2}
+          style={show_public_orders ? base.button2 : base.button1}
           styleText={base.buttonText1}
           onPress={this.onPressShow}
         />

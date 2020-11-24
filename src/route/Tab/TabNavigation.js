@@ -24,6 +24,7 @@ import ClosedDeals from '../../components/Screens/ClosedDeals';
 import ActiveOrders from '../../components/Screens/ActiveOrders';
 import FeedbackTransaction from '../../components/Screens/FeedbackTransaction';
 import ClosedDealInfo from '../../components/Screens/ClosedDealInfo';
+import Event from '../../components/Screens/Event';
 
 import Step1 from '../../components/Screens/Step/Step1';
 import Step2 from '../../components/Screens/Step/Step2';
@@ -129,6 +130,7 @@ export default class TabNavigation extends React.Component {
         <Stack.Screen name="Profile" component={Profile} options={options} />
         <Stack.Screen name="Password" component={Password} options={options} />
         <Stack.Screen name="Chat" component={Chat} options={options} />
+        <Stack.Screen name="Event" component={Event} options={options} />
 
         <Stack.Screen name="Step1" component={Step1} options={options} />
         <Stack.Screen name="Step2" component={Step2} options={options} />

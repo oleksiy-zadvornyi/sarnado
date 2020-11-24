@@ -37,7 +37,7 @@ export default class Account extends React.Component {
         <WrapIconLabel icon={Images.user} title="Пользователь" />
         <ButtonNext title="Профиль пользователя" screen="Profile" />
         <ButtonNext title="Пароль" screen="Password" />
-        <ButtonNext title="Google 2GA" screen="FeedbackTransaction" />
+        <ButtonNext title="Google 2GA" screen="Event" />
         <ButtonNext title="Реферальная программа" screen="Referrals" />
         <ButtonNext title="Оповещения" screen="Notification" />
 
