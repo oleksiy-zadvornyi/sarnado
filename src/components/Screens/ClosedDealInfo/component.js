@@ -65,7 +65,7 @@ export default class ClosedDealInfo extends React.Component {
               </Text>
             </View>
 
-            {deal.data.location.city && (
+            {/* {deal.data.location.city && (
               <View style={[base.wrap4, base.wrap5]}>
                 <Text numberOfLines={1} style={base.text3}>
                   Предложение в городе
@@ -74,7 +74,7 @@ export default class ClosedDealInfo extends React.Component {
                   {deal.data.location.city.name}
                 </Text>
               </View>
-            )}
+            )} */}
 
             <View style={base.wrap4}>
               <Text numberOfLines={1} style={base.text3}>

@@ -35,7 +35,7 @@ export default class OrderDescription extends React.Component {
           </Text>
         </View>
 
-        <View style={base.wrap4}>
+        {/* <View style={base.wrap4}>
           <Text numberOfLines={1} style={base.text3}>
             Предложение в стране
           </Text>
@@ -53,7 +53,7 @@ export default class OrderDescription extends React.Component {
               {location.city.name}
             </Text>
           </View>
-        )}
+        )} */}
 
         <View style={base.wrap4}>
           <Text numberOfLines={1} style={base.text3}>

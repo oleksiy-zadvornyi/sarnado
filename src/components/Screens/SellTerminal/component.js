@@ -25,7 +25,6 @@ export default class SellTerminal extends React.Component {
       crypto: [],
       fiat: [],
       directions: [],
-      countries: [],
     };
   }
 
@@ -49,11 +48,11 @@ export default class SellTerminal extends React.Component {
 
   onChangeSorts = (sorts) => {
     const {user, fetchPostOrders} = this.props;
-    const {indexCountry, indexDirection, indexCrypto} = sorts;
-    const {crypto, directions, countries} = this.state;
+    const {indexFiat, indexDirection, indexCrypto} = sorts;
+    const {crypto, directions, fiat} = this.state;
     const data = {
       type: 'sell',
-      country: indexCountry >= 0 ? countries[indexCountry].code : null,
+      fiat: indexFiat >= 0 ? fiat[indexFiat].code : null,
       crypto: indexCrypto >= 0 ? crypto[indexCrypto].id : null,
       direction: indexDirection >= 0 ? directions[indexDirection].code : null,
     };
@@ -64,7 +63,7 @@ export default class SellTerminal extends React.Component {
 
   render() {
     const {orders} = this.props;
-    const {crypto, directions, countries} = this.state;
+    const {crypto, directions, fiat} = this.state;
 
     return (
       <Wrap noScroll>
@@ -77,7 +76,7 @@ export default class SellTerminal extends React.Component {
         <Sorts
           crypto={crypto}
           directions={directions}
-          countries={countries}
+          fiat={fiat}
           onChange={this.onChangeSorts}
         />
 

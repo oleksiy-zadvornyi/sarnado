@@ -23,8 +23,6 @@ export default class ClosedDeals extends React.Component {
     this.state = {
       crypto: [],
       fiat: [],
-      directions: [],
-      countries: [],
       orders: [],
     };
   }
@@ -47,16 +45,22 @@ export default class ClosedDeals extends React.Component {
   }
 
   onChangeSorts = (sorts) => {
-    const {user, fetchPostOrders} = this.props;
-    const {indexCountry, indexDirection, indexCrypto} = sorts;
-    const {crypto, directions, countries} = this.state;
+    const {user, showNetworkIndicator} = this.props;
+    const {indexFiat, indexCrypto} = sorts;
+    const {crypto, fiat} = this.state;
     const data = {
       type: 'buy',
-      country: indexCountry >= 0 ? countries[indexCountry].code : null,
+      fiat: indexFiat >= 0 ? fiat[indexFiat].code : null,
       crypto: indexCrypto >= 0 ? crypto[indexCrypto].id : null,
-      direction: indexDirection >= 0 ? directions[indexDirection].code : null,
     };
-    fetchPostOrders({user, data});
+    const path = {
+      crypto: indexCrypto >= 0 ? crypto[indexCrypto].id : null,
+    };
+    showNetworkIndicator(true);
+    getDealsGetClosed({user, path})
+      .then((result) => this.setState({orders: result.data}))
+      .catch((e) => _fetchError(this.props, e, 'getDealsGetClosed'))
+      .finally(() => showNetworkIndicator(false));
   };
 
   renderItem = ({item, index}) => <ItemClosedDeals key={index} {...item} />;

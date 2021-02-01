@@ -122,7 +122,7 @@ export default class Buy extends React.Component {
           </Text>
         </View>
 
-        <View style={base.wrap1}>
+        {/* <View style={base.wrap1}>
           <Text numberOfLines={1} style={base.text2}>
             Предложение в стране
           </Text>
@@ -140,7 +140,7 @@ export default class Buy extends React.Component {
               {location.city.name}
             </Text>
           </View>
-        )}
+        )} */}
 
         <View style={base.wrap1}>
           <Text numberOfLines={1} style={base.text2}>

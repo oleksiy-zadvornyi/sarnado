@@ -27,9 +27,7 @@ export default class ActiveOrders extends React.Component {
 
     this.state = {
       crypto: [],
-      fiat: [],
       directions: [],
-      countries: [],
       orders: [],
       isVisible: false,
     };
@@ -53,16 +51,22 @@ export default class ActiveOrders extends React.Component {
   }
 
   onChangeSorts = (sorts) => {
-    const {user, fetchPostOrders} = this.props;
-    const {indexCountry, indexDirection, indexCrypto} = sorts;
-    const {crypto, directions, countries} = this.state;
+    const {user, showNetworkIndicator} = this.props;
+    const {indexDirection, indexCrypto} = sorts;
+    const {crypto, directions} = this.state;
     const data = {
       type: 'buy',
-      country: indexCountry >= 0 ? countries[indexCountry].code : null,
       crypto: indexCrypto >= 0 ? crypto[indexCrypto].id : null,
       direction: indexDirection >= 0 ? directions[indexDirection].code : null,
     };
-    fetchPostOrders({user, data});
+    const path = {
+      crypto: indexCrypto >= 0 ? crypto[indexCrypto].id : null,
+    };
+    showNetworkIndicator(true);
+    getOrdersGetActive({user, path})
+      .then((result) => this.setState({orders: result.data}))
+      .catch((e) => _fetchError(this.props, e, 'getOrdersGetActive'))
+      .finally(() => showNetworkIndicator(false));
   };
 
   onPressItem = (id) => {
